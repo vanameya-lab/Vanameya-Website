@@ -3,11 +3,8 @@ import Hero from "@/components/Hero";
 import TheModernRitual from "@/components/TheModernRitual";
 import ScrollAnimationSection from "@/components/ScrollAnimationSection";
 import WhyChukkuKaapi from "@/components/WhyChukkuKaapi";
-import CraftedWithPurpose from "@/components/CraftedWithPurpose";
-import Preparation from "@/components/Preparation";
 import BrandStory from "@/components/BrandStory";
 import Reviews from "@/components/Reviews";
-import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,11 +15,8 @@ export default function Home() {
       <ScrollAnimationSection />
       <TheModernRitual />
       <WhyChukkuKaapi />
-      <CraftedWithPurpose />
-      <Preparation />
       <BrandStory />
       <Reviews />
-      <CTA />
       <Footer />
     </main>
   );
