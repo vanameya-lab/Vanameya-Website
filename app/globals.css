@@ -140,3 +140,8 @@ body {
 @keyframes loader-fill {
   0% { background-position: 100% }
 }
+
+.image-vignette {
+  mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 55%, transparent 100%);
+}
