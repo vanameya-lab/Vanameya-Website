@@ -1,90 +1,47 @@
 "use client";
-import { useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { useRef, useState, useEffect } from "react";
 
 export default function Hero() {
-  const { scrollY } = useScroll();
-  const [hideHero, setHideHero] = useState(false);
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
 
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight) {
-        setHideHero(true);
-      } else {
-        setHideHero(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMounted(true);
   }, []);
-  
-  // 1:1 parallax upward translation for the text container (scrolls up naturally)
-  const y = useTransform(scrollY, [0, 1000], [0, -1000]);
-  
-  // Parallax translation for the background image wrapper
-  const bgY = useTransform(scrollY, [0, 800], [0, 100]);
-  
-  // Quick fade out for the bottom scroll label
-  const elementsOpacity = useTransform(scrollY, [0, 150], [1, 0]);
 
   return (
     <section 
+      ref={heroRef}
       id="hero" 
-      className="sticky top-0 w-full h-[100dvh] z-0 flex flex-col justify-end pb-20 px-6 md:px-12 bg-[#111414] overflow-hidden"
-      style={{ 
-        visibility: hideHero ? "hidden" : "visible",
-        pointerEvents: hideHero ? "none" : "auto"
-      }}
+      className="w-full h-[100dvh] z-10 flex flex-col justify-end pb-16 md:pb-20 px-4 sm:px-6 md:px-12 relative bg-transparent"
     >
-      {/* Background Hero Images - Responsive desktop/mobile with parallax */}
-      <motion.div style={{ y: bgY }} className="absolute inset-0 z-0 bg-[#111414] select-none h-[120%] w-full">
-        {/* Desktop View Image */}
-        <div className="hidden md:block absolute inset-0 w-full h-full">
-          <Image
-            src="/hero/dektopview.webp"
-            alt="Vanaméya Chukku Kaapi Desktop Hero"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center image-vignette opacity-80"
-          />
-        </div>
-        
-        {/* Mobile View Image */}
-        <div className="block md:hidden absolute inset-0 w-full h-full">
-          <Image
-            src="/hero/mobileview.webp"
-            alt="Vanaméya Chukku Kaapi Mobile Hero"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-center image-vignette opacity-80"
-          />
-        </div>
-
-        {/* Ambient Gradient Overlays for maximum text readability and smooth blending */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111414] via-[#111414]/40 to-transparent z-10 pointer-events-none" />
-      </motion.div>
-
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-        className="relative z-20 max-w-7xl mx-auto w-full flex flex-col text-left pb-6 md:pb-12"
+        style={mounted ? { opacity, y } : {}}
+        className="relative z-20 max-w-7xl mx-auto w-full flex flex-col text-left pb-4 md:pb-12"
       >
-        <motion.div style={{ y }} className="w-full flex flex-col gap-4">
+        <div className="w-full flex flex-col gap-4">
           <span className="text-label-caps text-[#8ed2d5] tracking-[0.2em] uppercase opacity-80 block">
             A Morning Practice
           </span>
           
-          <h1 className="font-display text-[42px] sm:text-5xl md:text-[64px] text-[#e1e3e2] leading-[1.15] font-semibold tracking-tight">
+          <h1 className="text-display-lg text-[#e1e3e2]">
             Awaken the senses.<br />
             Rooted in heritage.
           </h1>
           
-          <p className="font-sans text-[#bec8c8] max-w-md text-base md:text-[16px] leading-relaxed mt-2">
+          <p className="text-body-lg text-[#bec8c8] max-w-md mt-2">
             Experience the deep, grounding ritual of traditional Kerala Chukku Kaapi. A harmonious blend of ancient wisdom and modern luxury.
           </p>
           
@@ -105,13 +62,13 @@ export default function Hero() {
               Discover the Story
             </Link>
           </div>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Scroll indicator label */}
-      <motion.div style={{ opacity: elementsOpacity }} className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none">
-        <span className="text-label-caps text-[#bec8c8]/40 text-[10px] tracking-[0.3em] uppercase">
-          The Elements
+      <motion.div style={mounted ? { opacity } : {}} className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none">
+        <span className="text-label-caps text-[#bec8c8]/40 text-[10px] tracking-[0.3em] uppercase animate-pulse">
+          Scroll to Explore
         </span>
       </motion.div>
     </section>

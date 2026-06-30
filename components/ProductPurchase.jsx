@@ -50,7 +50,7 @@ Please guide me through the checkout process.`;
   };
 
   return (
-    <section id="purchase" className="w-full bg-surface py-24 md:py-36 px-6 relative z-20 border-t border-earth-brown/10">
+    <section id="purchase" className="w-full bg-surface py-16 md:py-36 px-4 md:px-6 relative z-20 border-t border-earth-brown/10">
       <div className="max-w-container-max mx-auto relative">
         
         {/* Toast Notification */}
@@ -60,9 +60,9 @@ Please guide me through the checkout process.`;
               initial={{ opacity: 0, y: 50, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 20, x: "-50%" }}
-              className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-primary text-white px-6 py-4 rounded-xl shadow-2xl border border-white/10 flex items-center gap-3 backdrop-blur-md"
+              className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50 bg-primary text-white px-6 py-4 rounded-xl shadow-2xl border border-white/10 flex items-center gap-3 backdrop-blur-md w-[90%] md:w-auto"
             >
-              <svg className="w-5 h-5 text-warm-gold fill-current" viewBox="0 0 20 20">
+              <svg className="w-5 h-5 text-warm-gold fill-current flex-shrink-0" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               <span className="text-sm font-semibold tracking-wide">{toastMessage}</span>
@@ -70,7 +70,7 @@ Please guide me through the checkout process.`;
           )}
         </AnimatePresence>
 
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start">
           
           {/* Left Column: Visual Showcase */}
           <div className="lg:col-span-6 w-full flex flex-col justify-start">
@@ -79,13 +79,13 @@ Please guide me through the checkout process.`;
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl bg-[#191c1c] border border-primary/5 flex items-center justify-center p-6"
+              className="w-full aspect-[4/3] sm:aspect-square md:aspect-[4/3] relative rounded-3xl overflow-hidden shadow-2xl bg-[#191c1c] border border-primary/5 flex items-center justify-center p-4 md:p-6"
             >
               <Image
                 src="/products/dry-ginger-coffee/Pack.png"
                 alt="VANAMÉYA Instant Dry Ginger Coffee Box Packaging"
                 fill
-                className="object-contain p-2"
+                className="object-contain p-2 md:p-4"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
@@ -104,16 +104,16 @@ Please guide me through the checkout process.`;
           <div className="lg:col-span-6 flex flex-col text-left">
             <span className="text-label-caps text-warm-gold mb-3 block tracking-widest uppercase">Select & Checkout</span>
             <h2 className="text-display-lg text-primary mb-2">Instant Dry Ginger Coffee</h2>
-            <p className="text-sm text-on-surface-variant/70 mb-8 font-light">
+            <p className="text-body-md text-on-surface-variant/70 mb-6 lg:mb-8 font-light">
               Traditional Chukku Kaapi refined into a luxury instant elixir. Clean, certified ingredients, small-batch blended.
             </p>
 
             {/* Price Display */}
-            <div className="flex items-baseline gap-4 mb-8">
+            <div className="flex flex-wrap items-baseline gap-2 md:gap-4 mb-8">
               <span className="text-4xl md:text-5xl font-display font-semibold text-primary">
                 ₹{getPrice()}
               </span>
-              <span className="text-xl text-on-surface-variant/60 font-light">
+              <span className="text-lg md:text-xl text-on-surface-variant/60 font-light">
                 / ${getUsdPrice()} USD
               </span>
               {purchaseType === "subscribe" && (
@@ -124,62 +124,62 @@ Please guide me through the checkout process.`;
             </div>
 
             {/* Purchase Options Selector */}
-            <div className="flex flex-col gap-4 mb-8">
+            <div className="flex flex-col gap-3 md:gap-4 mb-8">
               <span className="text-[10px] text-warm-gold font-bold uppercase tracking-wider block">Purchase Option</span>
               
               {/* Option 1: One-time */}
               <div 
                 onClick={() => setPurchaseType("one-time")}
-                className={`p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
+                className={`p-4 md:p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
                   purchaseType === "one-time" 
                     ? "border-primary bg-primary/5" 
                     : "border-earth-brown/10 hover:border-primary/20 bg-white"
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                     purchaseType === "one-time" ? "border-primary" : "border-earth-brown/20"
                   }`}>
                     {purchaseType === "one-time" && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
                   </div>
                   <div>
-                    <span className="font-display font-semibold text-primary text-base block">One-time purchase</span>
-                    <span className="text-xs text-on-surface-variant/75 font-light">No subscription, buy as needed</span>
+                    <span className="font-display font-semibold text-primary text-sm md:text-base block">One-time purchase</span>
+                    <span className="text-[10px] md:text-xs text-on-surface-variant/75 font-light">No subscription, buy as needed</span>
                   </div>
                 </div>
-                <span className="font-semibold text-primary">₹599 / $24</span>
+                <span className="font-semibold text-primary text-sm md:text-base">₹599 / $24</span>
               </div>
 
               {/* Option 2: Subscription */}
               <div 
                 onClick={() => setPurchaseType("subscribe")}
-                className={`p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
+                className={`p-4 md:p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
                   purchaseType === "subscribe" 
                     ? "border-primary bg-primary/5" 
                     : "border-earth-brown/10 hover:border-primary/20 bg-white"
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                  <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 ${
                     purchaseType === "subscribe" ? "border-primary" : "border-earth-brown/20"
                   }`}>
                     {purchaseType === "subscribe" && <div className="w-2.5 h-2.5 rounded-full bg-primary" />}
                   </div>
                   <div>
-                    <span className="font-display font-semibold text-primary text-base block flex items-center gap-2">
+                    <span className="font-display font-semibold text-primary text-sm md:text-base block flex flex-wrap items-center gap-1 md:gap-2">
                       Subscribe & Save 15%
                     </span>
-                    <span className="text-xs text-on-surface-variant/75 font-light">Delivered monthly, cancel anytime</span>
+                    <span className="text-[10px] md:text-xs text-on-surface-variant/75 font-light">Delivered monthly, cancel anytime</span>
                   </div>
                 </div>
-                <span className="font-semibold text-primary">₹509 / $20</span>
+                <span className="font-semibold text-primary text-sm md:text-base">₹509 / $20</span>
               </div>
             </div>
 
             {/* Pack Size Selector */}
             <div className="mb-8">
               <span className="text-[10px] text-warm-gold font-bold uppercase tracking-wider block mb-4">Select Pack Size</span>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
                 <button
                   onClick={() => setPackSize(1)}
                   type="button"

@@ -24,7 +24,7 @@ const FrameSequence = forwardRef(({
     // Prioritize first frame
     const firstImg = new Image();
     const firstFrameName = MAPPED_FRAME_PATHS[0];
-    firstImg.src = `/images/${firstFrameName}`;
+    firstImg.src = `/hero-scroll/${firstFrameName}`;
     firstImg.onload = () => {
       console.log("FrameSequence: First frame loaded:", firstFrameName);
       imagesRef.current[firstFrameName] = firstImg;
@@ -35,7 +35,7 @@ const FrameSequence = forwardRef(({
         if (frameName === firstFrameName) return; // already loaded
         
         const img = new Image();
-        img.src = `/images/${frameName}`;
+        img.src = `/hero-scroll/${frameName}`;
         img.onload = () => {
           imagesRef.current[frameName] = img;
           loadedCount++;
@@ -101,7 +101,7 @@ const FrameSequence = forwardRef(({
       // Preserve aspect ratio inside canvas
       const hRatio = canvas.width / img.width;
       const vRatio = canvas.height / img.height;
-      const ratio = Math.min(hRatio, vRatio);
+      const ratio = Math.max(hRatio, vRatio);
       const centerShift_x = (canvas.width - img.width * ratio) / 2;
       const centerShift_y = (canvas.height - img.height * ratio) / 2;
       
@@ -121,15 +121,20 @@ const FrameSequence = forwardRef(({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    canvas.width = 1080;
-    canvas.height = 1080;
-    console.log("FrameSequence: Canvas size set to 1080x1080");
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      renderFrame(currentFrameIndexRef.current);
+    };
+    resize();
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
 
   return (
     <canvas 
       ref={canvasRef} 
-      className={`w-full h-full object-contain ${className}`}
+      className={`w-full h-full object-cover ${className}`}
       aria-label="3D Frame Sequence Animation"
     />
   );

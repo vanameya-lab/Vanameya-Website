@@ -1,75 +1,77 @@
 "use client";
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll } from "framer-motion";
 
 export default function WhyChukkuKaapi() {
+  const containerRef = useRef(null);
+  
   return (
-    <section className="w-full py-16 md:py-28 px-6 bg-surface-dim/20">
-      <div className="max-w-container-max mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-24">
-          <h2 className="text-display-lg text-primary mb-6">Elevate The Everyday.</h2>
-          <p className="text-body-lg text-on-surface-variant">
-            A purposeful blend designed to integrate seamlessly into a modern, mindful lifestyle.
-          </p>
+    <section ref={containerRef} className="w-full pt-20 pb-32 px-6 bg-transparent relative">
+      <div className="max-w-5xl mx-auto flex flex-col gap-[30vh]">
+        <div className="text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+          >
+            <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase text-shadow-sm">The Benefits</span>
+            <h2 className="text-display-md md:text-display-lg text-[#e1e3e2] mb-6 drop-shadow-lg">Elevate The Everyday.</h2>
+            <p className="text-body-lg text-[#bec8c8] drop-shadow-md max-w-xl mx-auto">
+              A purposeful blend designed to integrate seamlessly into a modern, mindful lifestyle.
+            </p>
+          </motion.div>
         </div>
 
-        <div className="flex flex-col gap-12">
-          {/* Panel 1 */}
+        <div className="relative w-full flex flex-col gap-[40vh] py-[10vh]">
+          {/* Text Block 1 */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="w-full bg-surface rounded-lg p-12 md:p-24 flex flex-col md:flex-row items-center justify-between border border-earth-brown/5 shadow-sm"
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-start"
           >
-            <div className="max-w-xl">
-              <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase">01</span>
-              <h3 className="text-headline-lg text-primary mb-6">Natural Morning Energy</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                A warm and mindful way to begin the day, waking the senses gently without the jarring spikes of traditional caffeine.
-              </p>
-            </div>
-            <div className="mt-12 md:mt-0 md:ml-12 w-full md:w-1/3 aspect-[3/4] bg-surface-dim/50 flex items-center justify-center rounded">
-               <span className="text-label-caps text-on-surface-variant/50">[ Morning Imagery ]</span>
-            </div>
-          </motion.div>
-
-          {/* Panel 2 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="w-full bg-surface rounded-lg p-12 md:p-24 flex flex-col md:flex-row items-center justify-between border border-earth-brown/5 shadow-sm"
-          >
-            <div className="order-2 md:order-1 mt-12 md:mt-0 md:mr-12 w-full md:w-1/3 aspect-[3/4] bg-surface-dim/50 flex items-center justify-center rounded">
-               <span className="text-label-caps text-on-surface-variant/50">[ Wellness Imagery ]</span>
-            </div>
-            <div className="max-w-xl order-1 md:order-2">
-              <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase">02</span>
-              <h3 className="text-headline-lg text-primary mb-6">Everyday Wellness</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                Inspired by traditional ingredients that have been trusted for generations to restore balance and calm.
+            <div className="max-w-xl text-left bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">01 / Focus</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Natural Morning Energy</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                A warm and mindful way to begin the day, waking the senses gently without the jarring spikes or afternoon crashes of traditional caffeine.
               </p>
             </div>
           </motion.div>
 
-          {/* Panel 3 */}
+          {/* Text Block 2 */}
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className="w-full bg-surface rounded-lg p-12 md:p-24 flex flex-col md:flex-row items-center justify-between border border-earth-brown/5 shadow-sm"
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-end"
           >
-            <div className="max-w-xl">
-              <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase">03</span>
-              <h3 className="text-headline-lg text-primary mb-6">Comfort In Every Season</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                Not just for rainy days. Designed for everyday rituals, offering a grounding moment of warmth whenever you need it.
+            <div className="max-w-xl text-left md:text-right bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">02 / Balance</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Everyday Wellness</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                Inspired by traditional Ayurvedic ingredients like dry ginger and black pepper that have been trusted for generations to restore balance and soothe digestion.
               </p>
             </div>
-            <div className="mt-12 md:mt-0 md:ml-12 w-full md:w-1/3 aspect-[3/4] bg-surface-dim/50 flex items-center justify-center rounded">
-               <span className="text-label-caps text-on-surface-variant/50">[ Comfort Imagery ]</span>
+          </motion.div>
+
+          {/* Text Block 3 */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-start"
+          >
+            <div className="max-w-xl text-left bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">03 / Unwind</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Comfort In Every Season</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                Not just a remedy for rainy days. Designed for your everyday rituals, offering a grounding moment of warmth and calm whenever you need it most.
+              </p>
             </div>
           </motion.div>
         </div>

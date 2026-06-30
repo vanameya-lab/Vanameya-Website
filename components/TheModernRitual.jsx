@@ -1,112 +1,78 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useRef } from "react";
 
 export default function TheModernRitual() {
+  const containerRef = useRef(null);
+
   return (
-    <section id="ritual" className="w-full py-16 md:py-28 px-6 bg-surface">
-      <div className="max-w-container-max mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-24">
-          <span className="text-label-caps text-warm-gold mb-6 tracking-widest block uppercase">The Modern Ritual</span>
-          <h2 className="text-headline-lg text-primary leading-tight">
-            A rhythm of wellness <br className="hidden md:block"/> for the modern day.
-          </h2>
+    <section id="ritual" className="w-full pt-20 pb-32 px-6 bg-transparent relative" ref={containerRef}>
+      <div className="max-w-5xl mx-auto flex flex-col gap-[30vh]">
+        <div className="text-center max-w-3xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+          >
+            <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase text-shadow-sm">The Modern Ritual</span>
+            <h2 className="text-display-md md:text-display-lg text-[#e1e3e2] drop-shadow-lg leading-tight">
+              A rhythm of wellness <br className="hidden md:block"/> for the modern day.
+            </h2>
+          </motion.div>
         </div>
 
-        <div className="flex flex-col gap-32">
+        <div className="relative w-full flex flex-col gap-[40vh] py-[10vh]">
           {/* Morning Warmth */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1 }}
-              className="relative md:col-span-7 aspect-[4/3] bg-surface-dim rounded overflow-hidden"
-            >
-              <Image 
-                src="/images/ritual-morning.jpg"
-                alt="Morning Warmth: Steaming traditional brass cup of Chukku Kaapi on a rustic wooden ledge at sunrise with mist over Kerala valley"
-                fill
-                sizes="(max-width: 768px) 100vw, 58vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-                priority
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="md:col-span-5 flex flex-col justify-center"
-            >
-              <h3 className="text-headline-md text-primary mb-6">Morning Warmth</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                Start the day with a comforting ritual inspired by generations of tradition.
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-end"
+          >
+            <div className="max-w-xl text-left md:text-right bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">01 / Morning</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Morning Warmth</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                Start the day with a comforting ritual inspired by generations of tradition. Awaken your senses with the grounding aroma of dry ginger and subtle spices.
               </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
           {/* Midday Reset */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="md:col-span-5 flex flex-col justify-center order-2 md:order-1"
-            >
-              <h3 className="text-headline-md text-primary mb-6">Midday Reset</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                A mindful alternative to sugary beverages and energy drinks.
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-start"
+          >
+            <div className="max-w-xl text-left bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">02 / Midday</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Midday Reset</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                A mindful alternative to sugary beverages and energy drinks. Recharge your focus and soothe your digestion with a warm cup mid-afternoon.
               </p>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1 }}
-              className="relative md:col-span-7 aspect-[4/3] bg-surface-dim rounded overflow-hidden order-1 md:order-2"
-            >
-              <Image 
-                src="/images/ritual-midday.jpg"
-                alt="Midday Reset: Traditional brass cup of hot Chukku Kaapi on a dark wood work desk next to a laptop with clean corporate layout"
-                fill
-                sizes="(max-width: 768px) 100vw, 58vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
 
           {/* Evening Comfort */}
-          <div className="grid md:grid-cols-12 gap-8 md:gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1 }}
-              className="relative md:col-span-7 aspect-[4/3] bg-surface-dim rounded overflow-hidden"
-            >
-              <Image 
-                src="/images/ritual-evening.jpg"
-                alt="Evening Comfort: Steaming clay cup of Chukku Kaapi on a wet stone windowsill in rainy monsoon twilight"
-                fill
-                sizes="(max-width: 768px) 100vw, 58vw"
-                className="object-cover transition-transform duration-700 hover:scale-105"
-              />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="md:col-span-5 flex flex-col justify-center"
-            >
-              <h3 className="text-headline-md text-primary mb-6">Evening Comfort</h3>
-              <p className="text-body-lg text-on-surface-variant leading-relaxed">
-                Slow down, unwind and reconnect with a calmer rhythm.
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-20%" }}
+            transition={{ duration: 1.0, ease: "easeOut" }}
+            className="w-full flex md:justify-end"
+          >
+            <div className="max-w-xl text-left md:text-right bg-[#111414]/20 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl">
+              <span className="text-label-caps text-warm-gold mb-4 block tracking-widest uppercase drop-shadow-sm">03 / Evening</span>
+              <h3 className="text-display-sm text-[#e1e3e2] mb-6 drop-shadow-lg leading-tight">Evening Comfort</h3>
+              <p className="text-body-lg text-[#bec8c8] leading-relaxed drop-shadow-md">
+                Slow down, unwind and reconnect with a calmer rhythm. Let the natural warmth of Chukku Kaapi wash away the fatigue of the day.
               </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
