@@ -7,9 +7,7 @@ import PDPGallery from "@/components/pdp/PDPGallery";
 import PDPPurchasePanel from "@/components/pdp/PDPPurchasePanel";
 import PDPStickyMobileBar from "@/components/pdp/PDPStickyMobileBar";
 import PDPBenefits from "@/components/pdp/PDPBenefits";
-import PDPIngredients from "@/components/pdp/PDPIngredients";
 import PDPPreparationTimeline from "@/components/pdp/PDPPreparationTimeline";
-import PDPWhyVanameya from "@/components/pdp/PDPWhyVanameya";
 import PDPNutritionSpecs from "@/components/pdp/PDPNutritionSpecs";
 import PDPReviews from "@/components/pdp/PDPReviews";
 import PDPRelatedProducts from "@/components/pdp/PDPRelatedProducts";
@@ -45,21 +43,21 @@ export default function ShopNow() {
 
       {/* Storytelling & Info Sections Below Fold */}
       <PDPBenefits />
-      <PDPIngredients />
       <PDPPreparationTimeline />
-      <PDPWhyVanameya />
       <PDPNutritionSpecs />
       
       {/* Reviews & Social Proof */}
       <PDPReviews />
       
       {/* Upsells */}
-      <PDPRelatedProducts />
+      {/* 
+        TODO (Reminder): Uncomment this PDPRelatedProducts section after a few days or months 
+        as per the user's request.
+        <PDPRelatedProducts />
+      */}
 
       {/* FAQ */}
-      <div className="w-full max-w-container-max mx-auto border-t border-border/50 py-12">
-         <ProductFAQ />
-      </div>
+      <ProductFAQ />
 
       <Footer />
 

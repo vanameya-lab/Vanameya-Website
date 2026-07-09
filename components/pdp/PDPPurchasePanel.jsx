@@ -9,7 +9,7 @@ export default function PDPPurchasePanel() {
   const [loading, setLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const basePrice = 129;
+  const basePrice = 149;
   const originalPrice = 149;
   const subscriptionDiscount = 0.85;
 
@@ -17,7 +17,8 @@ export default function PDPPurchasePanel() {
     let pricePerBox = type === "subscribe" ? Math.round(basePrice * subscriptionDiscount) : basePrice;
     let subtotal = pricePerBox * pSize * qty;
     if (pSize === 2) subtotal = subtotal * 0.95;
-    if (pSize === 3) subtotal = subtotal * 0.93;
+    if (pSize === 3) subtotal = subtotal * 0.95;
+    if (pSize >= 5) subtotal = subtotal * 0.93;
     return Math.round(subtotal);
   };
 
@@ -89,7 +90,9 @@ Please guide me through checkout.`;
       <div className="flex flex-col gap-2 mb-8">
         <div className="flex items-baseline gap-4">
           <span className="text-4xl font-semibold text-primary-text">₹{getPrice()}</span>
-          <span className="text-xl text-secondary-text/50 font-light line-through">₹{getOriginalPrice()}</span>
+          {getPrice() < getOriginalPrice() && (
+            <span className="text-xl text-secondary-text/50 font-light line-through">₹{getOriginalPrice()}</span>
+          )}
         </div>
         <div className="flex flex-wrap gap-2">
           {purchaseType === "subscribe" && (
@@ -99,6 +102,9 @@ Please guide me through checkout.`;
             <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 5%</span>
           )}
           {packSize === 3 && (
+            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 5%</span>
+          )}
+          {packSize >= 5 && (
             <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 7% + Free Shipping</span>
           )}
         </div>
@@ -109,7 +115,9 @@ Please guide me through checkout.`;
       <div className="flex flex-col gap-3 mb-6">
         <span className="type-caption text-secondary-text font-bold uppercase tracking-wider">Purchase Option</span>
         
-        <label className={`relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+        <div 
+          onClick={() => setPurchaseType("one-time")}
+          className={`relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
           purchaseType === "one-time" ? "border-accent bg-accent/5" : "border-border/50 hover:border-border bg-white/5"
         }`}>
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
@@ -121,23 +129,27 @@ Please guide me through checkout.`;
               <span className="text-[10px] sm:text-xs text-secondary-text/80 break-words line-clamp-2">No commitment, buy as needed</span>
             </div>
           </div>
-          <span className="text-sm sm:text-base font-semibold text-primary-text shrink-0">₹{getPrice("one-time", packSize, 1)}</span>
-        </label>
+          <div className="flex items-center gap-2 shrink-0">
+            {getPrice("one-time", packSize, 1) < getOriginalPrice(packSize, 1) && (
+              <span className="text-xs sm:text-sm text-secondary-text/50 line-through">₹{getOriginalPrice(packSize, 1)}</span>
+            )}
+            <span className="text-sm sm:text-base font-semibold text-primary-text">₹{getPrice("one-time", packSize, 1)}</span>
+          </div>
+        </div>
 
-        <label className={`relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-          purchaseType === "subscribe" ? "border-accent bg-accent/5" : "border-border/50 hover:border-border bg-white/5"
-        }`}>
+        <div className="relative flex items-center justify-between p-3 sm:p-4 rounded-xl border-2 border-border/50 bg-white/5 opacity-50 cursor-not-allowed">
           <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-            <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 flex items-center justify-center shrink-0 ${purchaseType === "subscribe" ? "border-accent" : "border-border/50"}`}>
-              {purchaseType === "subscribe" && <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-accent" />}
-            </div>
+            <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full border-2 border-border/50 flex items-center justify-center shrink-0" />
             <div className="flex flex-col min-w-0 pr-2">
-              <span className="text-sm sm:text-base text-primary-text font-semibold flex items-center gap-2 flex-wrap">Subscribe & Save</span>
+              <span className="text-sm sm:text-base text-primary-text font-semibold flex items-center gap-2 flex-wrap">
+                Subscribe & Save
+                <span className="px-2 py-0.5 bg-accent/20 text-accent text-[8px] font-bold uppercase tracking-widest rounded-sm">Coming Soon</span>
+              </span>
               <span className="text-[10px] sm:text-xs text-secondary-text/80 break-words line-clamp-2">Delivered monthly, cancel anytime</span>
             </div>
           </div>
           <span className="text-sm sm:text-base font-semibold text-primary-text shrink-0">₹{getPrice("subscribe", packSize, 1)}</span>
-        </label>
+        </div>
       </div>
 
       {/* Pack Size Selector */}
@@ -146,11 +158,12 @@ Please guide me through checkout.`;
           <span className="type-caption text-secondary-text font-bold uppercase tracking-wider">Pack Size</span>
           <span className="text-[10px] sm:text-xs text-accent font-semibold">{packSize * 10} Sachets Total</span>
         </div>
-        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 gap-2 sm:gap-3">
           {[
             { size: 1, label: "1 Box", save: "" },
             { size: 2, label: "2 Boxes", save: "Save 5%" },
-            { size: 3, label: "3 Boxes", save: "Save 7%" }
+            { size: 3, label: "3 Boxes", save: "Save 5%" },
+            { size: 5, label: "5 Boxes", save: "Save 7%" }
           ].map((item) => (
             <button
               key={item.size}

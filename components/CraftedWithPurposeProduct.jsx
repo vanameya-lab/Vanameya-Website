@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const FlashCard = ({ ing, index }) => {
+const FlashCard = ({ ing, index, className = "" }) => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   return (
@@ -12,7 +12,7 @@ const FlashCard = ({ ing, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative h-[200px] sm:h-[220px] w-full [perspective:1000px] cursor-pointer group"
+      className={`relative h-[200px] sm:h-[220px] w-full [perspective:1000px] cursor-pointer group ${className}`}
       onMouseEnter={() => setIsFlipped(true)}
       onMouseLeave={() => setIsFlipped(false)}
       onClick={() => setIsFlipped(!isFlipped)}
@@ -23,17 +23,30 @@ const FlashCard = ({ ing, index }) => {
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
       >
         {/* Front */}
-        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center p-5 rounded-3xl border border-border bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur-md [backface-visibility:hidden] group-hover:border-white/20 transition-colors">
-          <h4 className="text-xl xl:text-2xl text-primary-text mb-2 text-center">{ing.name}</h4>
-          <span className="type-caption text-accent tracking-widest font-semibold uppercase text-center">{ing.desc}</span>
-
-          <div className="absolute bottom-5 opacity-40 group-hover:opacity-100 transition-opacity">
-            <span className="type-caption uppercase tracking-widest text-primary-text/60 flex items-center gap-1.5">
-              Flip to reveal
-              <svg className="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
-            </span>
+        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end p-5 rounded-3xl border border-border bg-gradient-to-br from-white/[0.04] to-transparent [backface-visibility:hidden] group-hover:border-white/20 transition-colors overflow-hidden">
+          {ing.img && (
+            <>
+              <Image 
+                src={ing.img} 
+                alt={ing.name} 
+                fill 
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                className="object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+            </>
+          )}
+          <div className="relative z-10 flex flex-col items-center justify-end w-full">
+            <h4 className="text-xl xl:text-2xl text-primary-text mb-1 text-center font-semibold drop-shadow-md">{ing.name}</h4>
+            <span className="type-caption text-accent tracking-widest font-semibold uppercase text-center drop-shadow-md mb-4">{ing.desc}</span>
+            <div className="opacity-50 group-hover:opacity-100 transition-opacity">
+              <span className="type-caption uppercase tracking-widest text-primary-text/80 flex items-center gap-1.5">
+                Flip to reveal
+                <svg className="w-3 h-3 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </span>
+            </div>
           </div>
         </div>
 
@@ -54,22 +67,32 @@ export default function CraftedWithPurposeProduct() {
     {
       name: "Dry Ginger",
       desc: "Wayanad Single-Origin",
-      story: "The warming foundation. Cultivated in the mineral-rich soils of Wayanad, it ignites the body's internal digestive fire (Agni), enhances nutrient absorption, and clears metabolic pathways."
+      story: "The warming foundation. Cultivated in the mineral-rich soils of Wayanad, it ignites the body's internal digestive fire (Agni), enhances nutrient absorption, and clears metabolic pathways.",
+      img: "/products/dry-ginger-coffee/shop_now_images/ingridients/dryginger.jpeg"
     },
     {
-      name: "Black Pepper",
+      name: "Pepper",
       desc: "Malabar Native Vines",
-      story: "The bio-enhancing catalyst. Hand-harvested native black peppercorns from Malabar release a gentle heat that boosts the biological efficacy of accompanying botanicals, ensuring cellular absorption."
+      story: "The bio-enhancing catalyst. Hand-harvested native black peppercorns from Malabar release a gentle heat that boosts the biological efficacy of accompanying botanicals, ensuring cellular absorption.",
+      img: "/products/dry-ginger-coffee/shop_now_images/ingridients/pepper.jpeg"
     },
     {
       name: "Green Cardamom",
       desc: "Western Ghats Forest",
-      story: "The clarifying aromatic. Highly prized Cardamom pods from the cool Western Ghats offer digestive comfort and a light, uplifting top note that harmonizes the blend's robust spice profile."
+      story: "The clarifying aromatic. Highly prized Cardamom pods from the cool Western Ghats offer digestive comfort and a light, uplifting top note that harmonizes the blend's robust spice profile.",
+      img: "/products/dry-ginger-coffee/shop_now_images/ingridients/cardamom.jpeg"
     },
     {
       name: "Palm Jaggery",
       desc: "Unrefined Nectar",
-      story: "The grounding sweet. Mineral-dense, unrefined nectar extracted from palm trees binds the elements together, providing a slow-release natural energy and complex, caramelized depth."
+      story: "The grounding sweet. Mineral-dense, unrefined nectar extracted from palm trees binds the elements together, providing a slow-release natural energy and complex, caramelized depth.",
+      img: "/products/dry-ginger-coffee/shop_now_images/ingridients/palmjaggery.jpeg"
+    },
+    {
+      name: "Coffee",
+      desc: "Premium Shade-Grown",
+      story: "The robust foundation. Hand-picked beans roasted to perfection, adding a familiar rich depth that complements the intense spices.",
+      img: "/products/dry-ginger-coffee/shop_now_images/ingridients/coffee.jpeg"
     }
   ];
 
@@ -121,7 +144,12 @@ export default function CraftedWithPurposeProduct() {
             {/* Flash Cards Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6 pt-6 border-t border-border">
               {ingredients.map((ing, i) => (
-                <FlashCard key={i} ing={ing} index={i} />
+                <FlashCard 
+                  key={i} 
+                  ing={ing} 
+                  index={i} 
+                  className={i === 4 ? "sm:col-span-2 lg:col-span-2 sm:w-1/2 sm:mx-auto" : ""} 
+                />
               ))}
             </div>
           </div>

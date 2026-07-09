@@ -5,29 +5,23 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function ShopNowPurchase() {
   const [purchaseType, setPurchaseType] = useState("one-time"); // "one-time" or "subscribe"
-  const [packSize, setPackSize] = useState(1); // 1, 2, or 3 boxes
+  const [packSize, setPackSize] = useState(1); // 1, 2, 3, or 5 boxes
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
 
-  const basePrice = 129; // in INR
-  const originalPrice = 149; 
-  const subscriptionDiscount = 0.85; // 15% off
+  const basePrice = 149; // in INR
+  const originalPrice = 149; // used for strikethrough logic
 
-  const getPrice = (type = purchaseType, pSize = packSize, qty = quantity) => {
-    let pricePerBox = basePrice;
-    if (type === "subscribe") {
-      pricePerBox = Math.round(basePrice * subscriptionDiscount);
-    }
-    
-    let subtotal = pricePerBox * pSize * qty;
-    
-    if (pSize === 2) {
-      subtotal = subtotal * 0.95; // 5% off
-    } else if (pSize === 3) {
-      subtotal = subtotal * 0.93; // 7% off
-    }
-    
+  // Handlers
+  const handlePurchaseTypeChange = (type) => setPurchaseType(type);
+  const handlePackSizeChange = (size) => setPackSize(size);
+
+  const getPrice = (pSize = packSize, qty = quantity) => {
+    let subtotal = basePrice * pSize * qty;
+    if (pSize === 2) subtotal = subtotal * 0.95; // 5% discount
+    if (pSize === 3) subtotal = subtotal * 0.95; // 5% discount
+    if (pSize >= 5) subtotal = subtotal * 0.93; // 7% discount
     return Math.round(subtotal);
   };
 
@@ -97,7 +91,6 @@ Please guide me through the checkout process.`;
               />
             </motion.div>
             
-            {/* Elegant details line instead of crowded redundant grids */}
             <div className="mt-6 text-center lg:text-left">
               <p className="text-xs text-secondary-text/75 font-light tracking-wide flex items-center justify-center lg:justify-start gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent" />
@@ -124,22 +117,24 @@ Please guide me through the checkout process.`;
               </span>
               
               <div className="flex flex-wrap gap-2 items-center">
-                <span className="px-2.5 py-1 bg-accent/5 border border-accent/20 rounded text-primary-text font-semibold type-caption uppercase tracking-wider">
-                  Initial Offer
-                </span>
                 {purchaseType === "subscribe" && (
                   <span className="px-2.5 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-semibold type-caption uppercase tracking-wider">
                     Save 15%
                   </span>
                 )}
                 {packSize === 2 && (
-                  <span className="px-2.5 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-semibold type-caption uppercase tracking-wider">
-                    5% Off
+                  <span className="px-2 py-1 bg-accent/20 text-accent font-semibold type-caption uppercase tracking-wider rounded-md border border-accent/20">
+                    Save 5%
                   </span>
                 )}
                 {packSize === 3 && (
-                  <span className="px-2.5 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-semibold type-caption uppercase tracking-wider">
-                    7% Off & Free Shipping
+                  <span className="px-2 py-1 bg-accent/20 text-accent font-semibold type-caption uppercase tracking-wider rounded-md border border-accent/20">
+                    Save 5%
+                  </span>
+                )}
+                {packSize >= 5 && (
+                  <span className="px-2 py-1 bg-accent/20 text-accent font-semibold type-caption uppercase tracking-wider rounded-md border border-accent/20">
+                    Save 7%
                   </span>
                 )}
               </div>
@@ -149,9 +144,8 @@ Please guide me through the checkout process.`;
             <div className="flex flex-col gap-4 mb-8">
               <span className="type-caption text-accent font-bold uppercase tracking-wider block">Purchase Option</span>
               
-              {/* Option 1: One-time */}
               <div 
-                onClick={() => setPurchaseType("one-time")}
+                onClick={() => handlePurchaseTypeChange("one-time")}
                 className={`p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
                   purchaseType === "one-time" 
                     ? "border-accent bg-accent/5" 
@@ -169,12 +163,11 @@ Please guide me through the checkout process.`;
                     <span className="text-xs text-secondary-text/75 font-light">No subscription, buy as needed</span>
                   </div>
                 </div>
-                <span className="font-semibold text-primary-text">₹{getPrice("one-time", packSize, 1)}</span>
+                <span className="font-semibold text-primary-text">₹{getPrice(packSize, 1)}</span>
               </div>
 
-              {/* Option 2: Subscription */}
               <div 
-                onClick={() => setPurchaseType("subscribe")}
+                onClick={() => handlePurchaseTypeChange("subscribe")}
                 className={`p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between ${
                   purchaseType === "subscribe" 
                     ? "border-accent bg-accent/5" 
@@ -194,24 +187,13 @@ Please guide me through the checkout process.`;
                     <span className="text-xs text-secondary-text/75 font-light">Delivered monthly, cancel anytime</span>
                   </div>
                 </div>
-                <span className="font-semibold text-primary-text">₹{getPrice("subscribe", packSize, 1)}</span>
+                <span className="font-semibold text-primary-text">₹{Math.round(getPrice(packSize, 1) * 0.85)}</span>
               </div>
             </div>
 
             {/* Pack Size Selector */}
             <div className="mb-8 w-full max-w-full">
               <span className="type-caption text-accent font-bold uppercase tracking-wider block mb-4">Select Pack Size</span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
-                <button
-                  onClick={() => setPackSize(1)}
-                  type="button"
-                  className={`p-4 border-2 rounded-xl text-center transition-all duration-300 font-semibold cursor-pointer ${
-                    packSize === 1 
-                      ? "border-accent bg-accent/5 text-primary-text" 
-                      : "border-border/15 bg-white/5 text-secondary-text hover:border-accent/20"
-                  }`}
-                >
-                  <span className="block text-lg">1 Box</span>
                   <span className="type-caption font-normal tracking-wide text-secondary-text/70 uppercase">10 Sachets</span>
                 </button>
                 

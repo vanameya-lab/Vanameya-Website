@@ -51,7 +51,8 @@ export default function PDPStickyMobileBar() {
             </div>
             <div className="flex flex-col min-w-0 pr-2">
               <span className="text-xs sm:text-sm font-semibold text-primary-text truncate">Dry Ginger Coffee</span>
-              <span className="text-xs sm:text-sm font-bold text-accent">₹129</span>
+              <span className="text-xs sm:text-sm font-bold text-accent">₹149</span>
+              <span className="text-[10px] sm:text-[11px] text-secondary-text">Per Box</span>
             </div>
           </div>
           

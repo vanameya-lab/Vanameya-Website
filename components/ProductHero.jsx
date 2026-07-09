@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function ProductHero() {
   const scrollToSection = (id) => {
@@ -45,12 +46,12 @@ export default function ProductHero() {
 
             {/* CTAs (Visible immediately above the fold on mobile) */}
             <div className="flex flex-col sm:flex-row gap-3 mb-8 w-full max-w-full">
-              <button
-                onClick={() => scrollToSection("purchase")}
-                className="w-full sm:w-auto flex-1 px-4 sm:px-8 py-4 bg-accent text-background type-label rounded-xl hover:bg-accent-hover transition-all duration-300 shadow-md text-center cursor-pointer font-bold tracking-wider uppercase text-[11px] sm:text-sm whitespace-normal"
+              <Link
+                href="/shop-now"
+                className="w-full sm:w-auto flex-1 px-4 sm:px-8 py-4 bg-accent text-background type-label rounded-xl hover:bg-accent-hover transition-all duration-300 shadow-md flex items-center justify-center cursor-pointer font-bold tracking-wider uppercase text-[11px] sm:text-sm whitespace-normal"
               >
                 Order Now
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection("ingredients")}
                 className="w-full sm:w-auto flex-1 px-4 sm:px-8 py-4 border-2 border-accent text-accent hover:bg-accent/10 type-label rounded-xl transition-all duration-300 text-center cursor-pointer font-bold tracking-wider uppercase text-[11px] sm:text-sm whitespace-normal"

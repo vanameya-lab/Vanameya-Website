@@ -37,9 +37,9 @@ export default function Hero({ frames = [] }) {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top top",
-            end: "+=250%", // Reduced from 400% to eliminate dead scrolling space
+            end: "+=350%", // Increased for smoother mobile scrolling and better timing
             pin: true,
-            scrub: 0.5,
+            scrub: 1, // Smoother scrub
             invalidateOnRefresh: true,
           }
         });
@@ -150,7 +150,7 @@ export default function Hero({ frames = [] }) {
             transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
             className="absolute top-0 left-0 w-full flex flex-col text-left pointer-events-auto"
           >
-            <div ref={textRef} className="w-full max-w-lg flex flex-col gap-4">
+            <div ref={textRef} className="w-full max-w-lg flex flex-col gap-3 md:gap-4">
               <span className="type-label text-accent tracking-[0.2em] uppercase opacity-80 block drop-shadow-md">
                 A Morning Practice
               </span>
@@ -164,7 +164,7 @@ export default function Hero({ frames = [] }) {
                 Experience the deep, grounding ritual of traditional Kerala Dry Ginger Coffee. A harmonious blend of ancient wisdom and modern luxury.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto">
                 <Link 
                   href="/shop" 
                   className="w-full sm:w-auto bg-accent text-surface-elevated type-label tracking-widest uppercase hover:bg-accent-hover transition-all duration-300 py-4 px-8 rounded flex items-center justify-center gap-2 font-semibold cursor-pointer shadow-lg"
@@ -182,8 +182,8 @@ export default function Hero({ frames = [] }) {
           </motion.div>
 
           {/* Moment 1: Morning */}
-          <div ref={moment1Ref} className="absolute top-1/4 left-0 w-full max-w-md opacity-0 pointer-events-auto">
-            <div className="bg-background/40 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-2xl">
+          <div ref={moment1Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto">
+            <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">01 / Focus</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Natural Morning Energy</h3>
               <p className="type-body lg:type-body-lg text-secondary-text leading-relaxed drop-shadow-md">
@@ -193,8 +193,8 @@ export default function Hero({ frames = [] }) {
           </div>
 
           {/* Moment 2: Midday */}
-          <div ref={moment2Ref} className="absolute top-1/3 right-0 w-full max-w-md opacity-0 pointer-events-auto text-left md:text-right">
-            <div className="bg-background/40 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-2xl">
+          <div ref={moment2Ref} className="absolute top-[25%] md:top-1/3 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto text-left md:text-right">
+            <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">02 / Balance</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Everyday Wellness</h3>
               <p className="type-body lg:type-body-lg text-secondary-text leading-relaxed drop-shadow-md">
@@ -204,8 +204,8 @@ export default function Hero({ frames = [] }) {
           </div>
 
           {/* Moment 3: Evening */}
-          <div ref={moment3Ref} className="absolute top-1/4 left-0 w-full max-w-md opacity-0 pointer-events-auto">
-            <div className="bg-background/40 backdrop-blur-md p-8 rounded-3xl border border-border/50 shadow-2xl">
+          <div ref={moment3Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto">
+            <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">03 / Unwind</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Comfort In Every Season</h3>
               <p className="type-body lg:type-body-lg text-secondary-text leading-relaxed drop-shadow-md">

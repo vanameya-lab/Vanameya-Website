@@ -111,7 +111,12 @@ const HeroCanvasSequence = forwardRef(({ frames = [], className = "" }, ref) => 
       // Cover logic to fill the screen elegantly without gaps
       const hRatio = canvas.width / img.width;
       const vRatio = canvas.height / img.height;
-      const ratio = Math.max(hRatio, vRatio); // Math.max for COVER behavior
+      let ratio = Math.max(hRatio, vRatio); // Math.max for COVER behavior
+      
+      // Zoom out slightly on portrait/mobile views to show more of the product horizontally
+      if (canvas.height > canvas.width) {
+        ratio = ratio * 0.85;
+      }
       
       const centerShift_x = (canvas.width - img.width * ratio) / 2;
       const centerShift_y = (canvas.height - img.height * ratio) / 2;

@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import ProductHero from "@/components/ProductHero";
-import WhyDryGinger from "@/components/WhyDryGinger";
 import CraftedWithPurposeProduct from "@/components/CraftedWithPurposeProduct";
 import WhenToEnjoy from "@/components/WhenToEnjoy";
 import WhyChooseVanameya from "@/components/WhyChooseVanameya";
@@ -21,10 +20,6 @@ export default function Shop() {
 
       {/* 2. Product Hero Showcase */}
       <ProductHero />
-
-      {/* 3. Why Dry Ginger Lifestyle Section */}
-      <WhyDryGinger />
-
       {/* 5. Crafted With Purpose Ingredients */}
       <CraftedWithPurposeProduct />
 
