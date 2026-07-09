@@ -72,20 +72,20 @@ export default function GlobalVideoBackground() {
   };
 
   if (!mounted) {
-    return <div className="fixed inset-0 bg-[#111414] -z-50" />;
+    return <div className="fixed inset-0 bg-background -z-50" />;
   }
 
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 w-full h-[100dvh] -z-50 bg-[#111414] overflow-hidden"
+      className="fixed inset-0 w-full h-[100dvh] -z-50 bg-background overflow-hidden"
     >
       {/* Huge Background Typography (Moves with scroll, sits behind the images) */}
       <div className="bg-typography absolute top-0 left-0 w-full h-[200vh] flex flex-col items-center justify-start pt-[30vh] gap-[40vh] z-0 pointer-events-none opacity-40">
-        <h1 className="text-[18vw] leading-none font-display text-[#2a2c2c] whitespace-nowrap tracking-tighter mix-blend-overlay">CHUKKU KAAPI</h1>
-        <h1 className="text-[18vw] leading-none font-display text-transparent whitespace-nowrap tracking-tighter" style={{ WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}>VANAMEYA</h1>
-        <h1 className="text-[18vw] leading-none font-display text-[#2a2c2c] whitespace-nowrap tracking-tighter mix-blend-overlay">THE RITUAL</h1>
-        <h1 className="text-[18vw] leading-none font-display text-transparent whitespace-nowrap tracking-tighter" style={{ WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}>HERITAGE</h1>
+        <h1 className="text-[18vw] leading-none text-surface-elevated whitespace-nowrap tracking-tighter mix-blend-overlay">DRY GINGER COFFEE</h1>
+        <h1 className="text-[18vw] leading-none text-transparent whitespace-nowrap tracking-tighter" style={{ WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}>VANAMEYA</h1>
+        <h1 className="text-[18vw] leading-none text-surface-elevated whitespace-nowrap tracking-tighter mix-blend-overlay">THE RITUAL</h1>
+        <h1 className="text-[18vw] leading-none text-transparent whitespace-nowrap tracking-tighter" style={{ WebkitTextStroke: "2px rgba(255,255,255,0.15)" }}>HERITAGE</h1>
       </div>
 
       <div className="absolute inset-0 z-10 flex items-center justify-center">

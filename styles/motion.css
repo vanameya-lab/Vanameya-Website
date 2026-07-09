@@ -1,0 +1,35 @@
+@theme inline {
+  --animate-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-medium: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  --animate-luxury: 800ms cubic-bezier(0.2, 0.65, 0.3, 0.9);
+  --animate-spring: 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@layer utilities {
+  .transition-fast {
+    transition-property: all;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-medium {
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-slow {
+    transition-property: all;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .transition-luxury {
+    transition-property: all;
+    transition-duration: 800ms;
+    transition-timing-function: cubic-bezier(0.2, 0.65, 0.3, 0.9);
+  }
+  .transition-spring {
+    transition-property: all;
+    transition-duration: 600ms;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}

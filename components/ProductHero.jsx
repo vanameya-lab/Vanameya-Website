@@ -17,60 +17,61 @@ export default function ProductHero() {
           
           {/* Left Column: Product Info & Mobile Image */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="col-span-12 lg:col-span-5 flex flex-col justify-center text-left"
+            className="lg:col-span-5 flex flex-col justify-center text-left w-full max-w-full"
           >
             {/* Tag */}
             <div className="mb-6">
-              <span className="inline-block px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-label-caps text-primary text-[10px] tracking-widest font-semibold">
+              <span className="inline-block px-3 py-1 bg-accent/10 border border-accent/20 rounded-full type-label text-primary-text type-caption tracking-widest font-semibold">
                 Wellness Brew
               </span>
             </div>
 
             {/* Responsive Typography Title */}
-            <h1 className="text-4xl sm:text-5xl lg:text-display-lg text-primary mb-4 leading-[1.15] tracking-tight font-semibold">
-              Instant Dry <br className="hidden md:inline"/> Ginger Coffee
+            <h1 className="text-3xl sm:text-5xl lg:type-display-lg text-primary-text mb-4 leading-[1.1] tracking-tight font-semibold flex flex-col w-full break-words">
+              <span>Instant Dry</span>
+              <span>Ginger Coffee</span>
             </h1>
             
-            <p className="text-lg sm:text-xl md:text-2xl font-display text-warm-gold mb-6 italic">
+            <p className="text-base sm:text-xl md:text-2xl text-accent mb-6 italic w-full">
               A Daily Ritual Rooted In Kerala Tradition
             </p>
             
-            <p className="text-sm sm:text-base md:text-body-lg text-on-surface-variant mb-8 leading-relaxed font-light">
+            <p className="text-sm sm:text-base md:type-body-lg text-secondary-text mb-8 leading-relaxed font-light w-full">
               An authentic, caffeine-conscious blend of hand-harvested spices and pure palm jaggery. Sourced from the soil of Kerala, designed to ground your daily wellness routine.
             </p>
 
             {/* CTAs (Visible immediately above the fold on mobile) */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-3 mb-8 w-full max-w-full">
               <button
                 onClick={() => scrollToSection("purchase")}
-                className="px-8 py-4 bg-primary text-white text-label-caps rounded-xl hover:bg-primary-container transition-all duration-300 shadow-md text-center cursor-pointer font-semibold"
+                className="w-full sm:w-auto flex-1 px-4 sm:px-8 py-4 bg-accent text-background type-label rounded-xl hover:bg-accent-hover transition-all duration-300 shadow-md text-center cursor-pointer font-bold tracking-wider uppercase text-[11px] sm:text-sm whitespace-normal"
               >
                 Order Now
               </button>
               <button
                 onClick={() => scrollToSection("ingredients")}
-                className="px-8 py-4 border border-earth-brown/20 text-on-surface hover:border-primary/40 text-label-caps rounded-xl transition-all duration-300 text-center cursor-pointer"
+                className="w-full sm:w-auto flex-1 px-4 sm:px-8 py-4 border-2 border-accent text-accent hover:bg-accent/10 type-label rounded-xl transition-all duration-300 text-center cursor-pointer font-bold tracking-wider uppercase text-[11px] sm:text-sm whitespace-normal"
               >
                 View Ingredients
               </button>
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-3 gap-4 border-t border-earth-brown/10 pt-6">
+            <div className="grid grid-cols-3 gap-2 sm:gap-4 border-t border-border pt-6 w-full max-w-full">
               <div className="flex flex-col">
-                <span className="text-[9px] md:text-[10px] text-warm-gold font-semibold uppercase tracking-wider mb-1">Origin</span>
-                <span className="text-xs md:text-sm font-medium text-primary">Kerala, India</span>
+                <span className="text-[10px] text-accent font-semibold uppercase tracking-wider mb-1">Origin</span>
+                <span className="text-xs sm:text-sm font-medium text-primary-text leading-tight break-words whitespace-normal">Kerala, India</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] md:text-[10px] text-warm-gold font-semibold uppercase tracking-wider mb-1">Purity</span>
-                <span className="text-xs md:text-sm font-medium text-primary">100% Natural</span>
+                <span className="text-[10px] text-accent font-semibold uppercase tracking-wider mb-1">Purity</span>
+                <span className="text-xs sm:text-sm font-medium text-primary-text leading-tight break-words whitespace-normal">100% Natural</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[9px] md:text-[10px] text-warm-gold font-semibold uppercase tracking-wider mb-1">Serving</span>
-                <span className="text-xs md:text-sm font-medium text-primary">Instant Sachet</span>
+                <span className="text-[10px] text-accent font-semibold uppercase tracking-wider mb-1">Serving</span>
+                <span className="text-xs sm:text-sm font-medium text-primary-text leading-tight break-words whitespace-normal">Instant Sachet</span>
               </div>
             </div>
 
@@ -79,35 +80,37 @@ export default function ProductHero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="lg:hidden w-full aspect-[4/5] relative rounded-3xl overflow-hidden bg-surface-dim/20 shadow-xl mt-10 border border-primary/5"
+              className="lg:hidden w-full relative rounded-3xl overflow-hidden bg-background/20 shadow-xl mt-10 border border-accent/5 flex items-center justify-center p-2"
             >
               <Image
                 src="/products/dry-ginger-coffee/heromobileview.png"
                 alt="VANAMÉYA Instant Dry Ginger Coffee Mobile Presentation"
-                fill
+                width={800}
+                height={1000}
                 priority
-                className="object-cover"
-                sizes="100vw"
+                className="w-full h-auto object-contain rounded-2xl"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </motion.div>
           </motion.div>
 
           {/* Desktop Hero Image (Only visible on desktop/large screens) */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="hidden lg:block col-span-7 relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl bg-surface-dim/20 group border border-primary/5"
+            className="hidden lg:flex col-span-7 relative w-full rounded-3xl overflow-hidden shadow-2xl bg-background/20 group border border-accent/5 items-center justify-center"
           >
             <Image
               src="/products/dry-ginger-coffee/herodesktopview.png"
               alt="VANAMÉYA Instant Dry Ginger Coffee Desktop Presentation"
-              fill
+              width={1200}
+              height={900}
               priority
-              className="object-cover transition-transform duration-700 hover:scale-105"
+              className="w-full h-auto object-contain transition-transform duration-700 hover:scale-105"
               sizes="55vw"
             />
-            <div className="absolute inset-0 bg-[#111414]/5 pointer-events-none" />
+            <div className="absolute inset-0 bg-background/5 pointer-events-none" />
           </motion.div>
 
         </div>

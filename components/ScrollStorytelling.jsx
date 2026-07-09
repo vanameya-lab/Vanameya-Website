@@ -22,17 +22,17 @@ export default function ScrollStorytelling() {
           {/* Left Column Text (Stage 1 & 3 staggered) */}
           <div className="col-span-1 flex flex-col gap-[80vh] pt-[30vh] pb-[30vh]">
             <div className="story-stage max-w-sm">
-              <span className="text-label-caps text-warm-gold mb-4 block">Stage 1</span>
-              <h3 className="text-headline-md text-primary mb-4">Rooted In Tradition</h3>
-              <p className="text-body-lg text-on-surface-variant">
+              <span className="type-label text-accent mb-4 block">Stage 1</span>
+              <h3 className="type-h2 text-primary-text mb-4">Rooted In Tradition</h3>
+              <p className="type-body-lg text-secondary-text">
                 A recipe inspired by generations of Kerala wisdom.
               </p>
             </div>
             
             <div className="story-stage max-w-sm mt-auto">
-              <span className="text-label-caps text-warm-gold mb-4 block">Stage 3</span>
-              <h3 className="text-headline-md text-primary mb-4">Designed For Modern Life</h3>
-              <p className="text-body-lg text-on-surface-variant">
+              <span className="type-label text-accent mb-4 block">Stage 3</span>
+              <h3 className="type-h2 text-primary-text mb-4">Designed For Modern Life</h3>
+              <p className="type-body-lg text-secondary-text">
                 Ready in seconds. Enjoyed every day.
               </p>
             </div>
@@ -46,8 +46,8 @@ export default function ScrollStorytelling() {
                 className="w-full h-full object-contain will-change-[transform,opacity]"
                 aria-label="Storytelling image sequence animation"
               />
-              <div className="absolute inset-0 flex items-center justify-center bg-surface-dim/20 -z-10 rounded-full">
-                <span className="text-label-caps text-on-surface-variant/50 text-center px-4">
+              <div className="absolute inset-0 flex items-center justify-center bg-background/20 -z-10 rounded-full">
+                <span className="type-label text-secondary-text/50 text-center px-4">
                   [ 300-Frame Animation ]
                 </span>
               </div>
@@ -57,9 +57,9 @@ export default function ScrollStorytelling() {
           {/* Right Column Text (Stage 2 staggered) */}
           <div className="col-span-1 flex flex-col pt-[80vh]">
             <div className="story-stage max-w-sm">
-              <span className="text-label-caps text-warm-gold mb-4 block">Stage 2</span>
-              <h3 className="text-headline-md text-primary mb-4">Crafted With Purpose</h3>
-              <p className="text-body-lg text-on-surface-variant">
+              <span className="type-label text-accent mb-4 block">Stage 2</span>
+              <h3 className="type-h2 text-primary-text mb-4">Crafted With Purpose</h3>
+              <p className="type-body-lg text-secondary-text">
                 Dry ginger, pepper, cardamom and palm jaggery in perfect harmony.
               </p>
             </div>
@@ -69,35 +69,35 @@ export default function ScrollStorytelling() {
         {/* Mobile Layout: Stacked (Animation -> Text -> Animation -> Text) */}
         <div className="md:hidden flex flex-col gap-16">
           <div className="flex flex-col gap-8">
-            <div className="w-full aspect-square bg-surface-dim/30 rounded-full flex items-center justify-center">
-               <span className="text-label-caps text-on-surface-variant/50">[ Anim Frame ]</span>
+            <div className="w-full aspect-square bg-background/30 rounded-full flex items-center justify-center">
+               <span className="type-label text-secondary-text/50">[ Anim Frame ]</span>
             </div>
             <div className="text-center">
-              <span className="text-label-caps text-warm-gold mb-2 block">Stage 1</span>
-              <h3 className="text-headline-md text-primary mb-4">Rooted In Tradition</h3>
-              <p className="text-body-lg text-on-surface-variant">A recipe inspired by generations of Kerala wisdom.</p>
+              <span className="type-label text-accent mb-2 block">Stage 1</span>
+              <h3 className="type-h2 text-primary-text mb-4">Rooted In Tradition</h3>
+              <p className="type-body-lg text-secondary-text">A recipe inspired by generations of Kerala wisdom.</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-8">
-            <div className="w-full aspect-square bg-surface-dim/30 rounded-full flex items-center justify-center">
-               <span className="text-label-caps text-on-surface-variant/50">[ Anim Frame ]</span>
+            <div className="w-full aspect-square bg-background/30 rounded-full flex items-center justify-center">
+               <span className="type-label text-secondary-text/50">[ Anim Frame ]</span>
             </div>
             <div className="text-center">
-              <span className="text-label-caps text-warm-gold mb-2 block">Stage 2</span>
-              <h3 className="text-headline-md text-primary mb-4">Crafted With Purpose</h3>
-              <p className="text-body-lg text-on-surface-variant">Dry ginger, pepper, cardamom and palm jaggery in perfect harmony.</p>
+              <span className="type-label text-accent mb-2 block">Stage 2</span>
+              <h3 className="type-h2 text-primary-text mb-4">Crafted With Purpose</h3>
+              <p className="type-body-lg text-secondary-text">Dry ginger, pepper, cardamom and palm jaggery in perfect harmony.</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-8">
-            <div className="w-full aspect-square bg-surface-dim/30 rounded-full flex items-center justify-center">
-               <span className="text-label-caps text-on-surface-variant/50">[ Anim Frame ]</span>
+            <div className="w-full aspect-square bg-background/30 rounded-full flex items-center justify-center">
+               <span className="type-label text-secondary-text/50">[ Anim Frame ]</span>
             </div>
             <div className="text-center">
-              <span className="text-label-caps text-warm-gold mb-2 block">Stage 3</span>
-              <h3 className="text-headline-md text-primary mb-4">Designed For Modern Life</h3>
-              <p className="text-body-lg text-on-surface-variant">Ready in seconds. Enjoyed every day.</p>
+              <span className="type-label text-accent mb-2 block">Stage 3</span>
+              <h3 className="type-h2 text-primary-text mb-4">Designed For Modern Life</h3>
+              <p className="type-body-lg text-secondary-text">Ready in seconds. Enjoyed every day.</p>
             </div>
           </div>
         </div>

@@ -26,19 +26,19 @@ export default function Header() {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
   }, [mobileMenuOpen]);
 
   const getLinkClass = (path) => {
     const isActive = pathname === path;
-    return `text-label-caps pb-1 transition-all duration-300 ${
+    return `type-label pb-1 transition-all duration-300 ${
       isActive 
-        ? "text-[#8ed2d5] border-b border-[#c8a96b]" 
-        : "text-[#bec8c8] hover:text-[#8ed2d5]"
+        ? "text-accent border-b border-[#c8a96b]" 
+        : "text-secondary-text hover:text-accent"
     }`;
   };
 
@@ -65,11 +65,11 @@ export default function Header() {
         <div 
           className={`pointer-events-auto flex justify-between items-center transition-all duration-500 ease-out ${
             isScrolled || mobileMenuOpen
-              ? "w-[calc(100%-2rem)] max-w-7xl mt-4 bg-[#111414]/95 backdrop-blur-md border border-white/10 shadow-2xl rounded-2xl py-4 px-6 md:px-8" 
+              ? "w-[calc(100%-2rem)] max-w-7xl mt-4 bg-background/95 backdrop-blur-md border border-border shadow-2xl rounded-2xl py-4 px-6 md:px-8" 
               : "w-full max-w-7xl bg-transparent border-b border-transparent py-6 px-6 md:px-8"
           }`}
         >
-          <div className="font-display text-2xl font-semibold text-[#8ed2d5] tracking-tight relative z-[70]">
+          <div className="text-2xl font-semibold text-accent tracking-tight relative z-[70]">
             <Link href="/" onClick={() => setMobileMenuOpen(false)}>VANAMÉYA</Link>
           </div>
           
@@ -87,14 +87,14 @@ export default function Header() {
           
           <Link 
             href="/shop-now" 
-            className="text-label-caps text-[#8ed2d5] hover:opacity-80 transition-opacity hidden md:block cursor-pointer"
+            className="type-label text-accent hover:opacity-80 transition-opacity hidden md:block cursor-pointer"
           >
             Shop Now
           </Link>
           
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#8ed2d5] hover:opacity-80 cursor-pointer p-2 -mr-2 relative z-[70]"
+            className="md:hidden text-accent hover:opacity-80 cursor-pointer p-2 -mr-2 relative z-[70]"
             aria-label="Toggle Menu"
           >
             <div className="w-6 h-5 relative flex flex-col justify-between">
@@ -114,7 +114,7 @@ export default function Header() {
             animate="open"
             exit="closed"
             variants={menuVariants}
-            className="fixed inset-0 z-50 bg-[#111414]/98 backdrop-blur-xl flex flex-col justify-center items-center px-6"
+            className="fixed inset-0 z-50 bg-background/98 backdrop-blur-xl flex flex-col justify-center items-center px-6"
           >
             <nav className="flex flex-col items-center gap-8 text-center mt-12">
               {navLinks.map((link, i) => (
@@ -127,8 +127,8 @@ export default function Header() {
                   <Link 
                     href={link.path} 
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`text-3xl font-display tracking-wide ${
-                      pathname === link.path ? "text-[#c8a96b]" : "text-[#e1e3e2]"
+                    className={`text-3xl tracking-wide ${
+                      pathname === link.path ? "text-accent" : "text-primary-text"
                     }`}
                   >
                     {link.name}
@@ -140,12 +140,12 @@ export default function Header() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
-                className="mt-8 pt-8 border-t border-white/10 w-full"
+                className="mt-8 pt-8 border-t border-border w-full"
               >
                 <Link 
                   href="/shop-now" 
                   onClick={() => setMobileMenuOpen(false)}
-                  className="inline-block bg-[#c9c6c1] text-[#111414] text-label-caps tracking-widest uppercase py-4 px-12 rounded-full font-semibold"
+                  className="inline-block bg-accent text-surface-elevated type-label tracking-widest uppercase py-4 px-12 rounded-full font-semibold"
                 >
                   Shop Now
                 </Link>

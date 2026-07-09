@@ -22,24 +22,24 @@ export default function Story() {
             sizes="100vw"
           />
           {/* Gradients to blend top and bottom, and enhance contrast */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#111414]/70 via-[#111414]/30 to-[#f8faf9] z-10" />
-          <div className="absolute inset-0 bg-[#111414]/25 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#111414]/70 via-[#111414]/30 to-[#f8faf9]/50 z-10" />
+          <div className="absolute inset-0 bg-background/25 z-10" />
         </div>
 
-        <div className="relative z-20 max-w-5xl mx-auto px-6 text-center text-white mt-16">
+        <div className="relative z-20 max-w-5xl mx-auto px-6 text-center text-primary-text mt-16">
           <motion.div
             initial={{ opacity: 0, y: 35 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
             className="flex flex-col items-center"
           >
-            <span className="text-label-caps text-[#8ed2d5] mb-6 tracking-[0.25em] font-semibold">
+            <span className="type-label text-accent mb-6 tracking-[0.25em] font-semibold">
               Our Story
             </span>
-            <h1 className="text-display-lg text-white mb-6 leading-[1.1] max-w-4xl tracking-tight">
+            <h1 className="type-display-lg text-primary-text mb-6 leading-[1.1] max-w-4xl tracking-tight">
               The Refined Essence <br className="hidden md:inline"/> of Nature
             </h1>
-            <p className="text-body-lg text-white/90 max-w-2xl font-light tracking-wide">
+            <p className="type-body-lg text-primary-text/90 max-w-2xl font-light tracking-wide">
               Rooted in the lush soul of Kerala, VANAMÉYA is a journey back to purity.
             </p>
           </motion.div>
@@ -58,7 +58,7 @@ export default function Story() {
               transition={{ duration: 1 }}
               className="lg:col-span-5"
             >
-              <blockquote className="text-3xl md:text-5xl font-display text-primary italic leading-tight text-left border-l border-warm-gold/30 pl-6 md:pl-8">
+              <blockquote className="text-3xl md:text-5xl text-primary-text italic leading-tight text-left border-l border-accent/30 pl-6 md:pl-8">
                 "Nature doesn't need improvement — it needs preservation."
               </blockquote>
             </motion.div>
@@ -69,7 +69,7 @@ export default function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="lg:col-span-7 space-y-8 text-body-lg text-on-surface-variant leading-relaxed text-left font-light"
+              className="lg:col-span-7 space-y-8 type-body-lg text-secondary-text leading-relaxed text-left font-light"
             >
               <p>
                 Our journey begins in the dense, vibrant forests of Kerala—the 'Vana'. Here, ancient wisdom and untouched biodiversity thrive in harmony. We believe that true luxury lies not in complex synthesis, but in the respectful extraction of nature's inherent brilliance.
@@ -85,13 +85,13 @@ export default function Story() {
 
 
       {/* Core Philosophy / Values Section */}
-      <section className="w-full bg-[#111414] py-28 md:py-36 px-6 text-white border-t border-white/5 relative z-20">
+      <section className="w-full bg-background py-28 md:py-36 px-6 text-primary-text border-t border-border relative z-20">
         <div className="max-w-container-max mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-24">
-            <span className="text-label-caps text-warm-gold mb-4 tracking-[0.2em] block">
+            <span className="type-label text-accent mb-4 tracking-[0.2em] block">
               Core Philosophy
             </span>
-            <h2 className="text-headline-lg text-[#8ed2d5] font-display font-semibold">
+            <h2 className="type-h1 text-accent font-semibold">
               Our Values
             </h2>
           </div>
@@ -103,11 +103,11 @@ export default function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
-              className="flex flex-col p-6 md:border-r md:border-white/10 md:last:border-r-0 md:pr-8 text-left"
+              className="flex flex-col p-6 md:border-r md:border-border md:last:border-r-0 md:pr-8 text-left"
             >
-              <span className="text-label-caps text-warm-gold/60 font-semibold mb-4 block">01</span>
-              <h3 className="text-xl font-display text-white mb-4">Authenticity</h3>
-              <p className="text-sm lg:text-body-md text-white/70 font-light leading-relaxed">
+              <span className="type-label text-accent/60 font-semibold mb-4 block">01</span>
+              <h3 className="text-xl text-primary-text mb-4">Authenticity</h3>
+              <p className="text-sm lg:type-body text-primary-text/70 font-light leading-relaxed">
                 Unyielding dedication to traditional sourcing and formulation.
               </p>
             </motion.div>
@@ -118,11 +118,11 @@ export default function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.15 }}
-              className="flex flex-col p-6 md:border-r md:border-white/10 md:last:border-r-0 md:px-8 text-left"
+              className="flex flex-col p-6 md:border-r md:border-border md:last:border-r-0 md:px-8 text-left"
             >
-              <span className="text-label-caps text-warm-gold/60 font-semibold mb-4 block">02</span>
-              <h3 className="text-xl font-display text-white mb-4">Purity</h3>
-              <p className="text-sm lg:text-body-md text-white/70 font-light leading-relaxed">
+              <span className="type-label text-accent/60 font-semibold mb-4 block">02</span>
+              <h3 className="text-xl text-primary-text mb-4">Purity</h3>
+              <p className="text-sm lg:type-body text-primary-text/70 font-light leading-relaxed">
                 Minimal intervention, maximum botanical integrity.
               </p>
             </motion.div>
@@ -133,11 +133,11 @@ export default function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="flex flex-col p-6 md:border-r md:border-white/10 md:last:border-r-0 md:px-8 text-left"
+              className="flex flex-col p-6 md:border-r md:border-border md:last:border-r-0 md:px-8 text-left"
             >
-              <span className="text-label-caps text-warm-gold/60 font-semibold mb-4 block">03</span>
-              <h3 className="text-xl font-display text-white mb-4">Responsibility</h3>
-              <p className="text-sm lg:text-body-md text-white/70 font-light leading-relaxed">
+              <span className="type-label text-accent/60 font-semibold mb-4 block">03</span>
+              <h3 className="text-xl text-primary-text mb-4">Responsibility</h3>
+              <p className="text-sm lg:type-body text-primary-text/70 font-light leading-relaxed">
                 Stewards of the land, protecting what we harvest.
               </p>
             </motion.div>
@@ -148,11 +148,11 @@ export default function Story() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.45 }}
-              className="flex flex-col p-6 md:border-r md:border-white/10 md:last:border-r-0 md:px-8 text-left"
+              className="flex flex-col p-6 md:border-r md:border-border md:last:border-r-0 md:px-8 text-left"
             >
-              <span className="text-label-caps text-warm-gold/60 font-semibold mb-4 block">04</span>
-              <h3 className="text-xl font-display text-white mb-4">Quality</h3>
-              <p className="text-sm lg:text-body-md text-white/70 font-light leading-relaxed">
+              <span className="type-label text-accent/60 font-semibold mb-4 block">04</span>
+              <h3 className="text-xl text-primary-text mb-4">Quality</h3>
+              <p className="text-sm lg:type-body text-primary-text/70 font-light leading-relaxed">
                 Exacting standards in every drop, every detail.
               </p>
             </motion.div>
@@ -165,9 +165,9 @@ export default function Story() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col p-6 text-left md:pl-8"
             >
-              <span className="text-label-caps text-warm-gold/60 font-semibold mb-4 block">05</span>
-              <h3 className="text-xl font-display text-white mb-4">Transparency</h3>
-              <p className="text-sm lg:text-body-md text-white/70 font-light leading-relaxed">
+              <span className="type-label text-accent/60 font-semibold mb-4 block">05</span>
+              <h3 className="text-xl text-primary-text mb-4">Transparency</h3>
+              <p className="text-sm lg:type-body text-primary-text/70 font-light leading-relaxed">
                 Clear origins, honest practices, visible intent.
               </p>
             </motion.div>
@@ -183,7 +183,7 @@ export default function Story() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-2xl md:text-4xl font-display italic text-earth-brown leading-relaxed"
+            className="text-2xl md:text-4xl italic text-secondary-text leading-relaxed"
           >
             "VANAMÉYA represents the essence of nature — authentic, pure, and thoughtfully delivered for modern global consumers."
           </motion.p>

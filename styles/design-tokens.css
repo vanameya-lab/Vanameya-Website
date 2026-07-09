@@ -1,0 +1,44 @@
+@theme inline {
+  /* Core Brand Colors from Style Guide */
+  --color-primary-green: #1b2b20;
+  --color-deep-forest: #0f1a13;
+  --color-warm-beige: #e7ddc6;
+  --color-soft-ivory: #faf8f3;
+  --color-charcoal: #1a1a1a;
+  --color-gold-accent: #c8a463;
+
+  /* Semantic Colors */
+  --color-background: var(--color-deep-forest);
+  --color-surface: var(--color-primary-green);
+  --color-surface-elevated: var(--color-charcoal);
+  
+  --color-primary-text: var(--color-soft-ivory);
+  --color-secondary-text: var(--color-warm-beige);
+  --color-muted-text: rgba(250, 248, 243, 0.6);
+  
+  --color-border: rgba(200, 164, 99, 0.3);
+  --color-divider: rgba(200, 164, 99, 0.15);
+  
+  --color-accent: var(--color-gold-accent);
+  --color-accent-hover: #b8943f;
+  
+  --color-success: #2e593e;
+  --color-warning: #c48c3b;
+  --color-error: #8a3324;
+  
+  --color-glass-overlay: rgba(15, 26, 19, 0.7);
+
+  /* Fonts */
+  --font-heading: var(--font-heading), ui-serif, Georgia, serif;
+  --font-body: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(0, 0, 0, 0.12);
+  --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.16);
+
+  /* Radii */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+}

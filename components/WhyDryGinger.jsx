@@ -26,12 +26,12 @@ export default function WhyDryGinger() {
   ];
 
   return (
-    <section className="w-full bg-[#f8faf9] py-24 md:py-32 px-6 border-t border-earth-brown/10 relative z-20">
+    <section className="w-full bg-surface section-pad-lg px-6 border-t border-border relative z-20">
       <div className="max-w-container-max mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-24">
-          <span className="text-label-caps text-warm-gold mb-4 tracking-[0.2em] block uppercase">Daily Wellness</span>
-          <h2 className="text-display-lg text-primary mb-6">More Than A Remedy. <br className="hidden md:inline"/> A Lifestyle.</h2>
-          <p className="text-body-lg text-on-surface-variant font-light leading-relaxed max-w-2xl mx-auto">
+          <span className="type-label text-accent mb-4 tracking-[0.2em] block uppercase">Daily Wellness</span>
+          <h2 className="type-display-lg text-primary-text mb-6">More Than A Remedy. <br className="hidden md:inline"/> A Lifestyle.</h2>
+          <p className="type-body-lg text-secondary-text font-light leading-relaxed max-w-2xl mx-auto">
             Unlike traditional medicinal teas, VANAMÉYA Instant Dry Ginger Coffee is crafted as a daily luxury ritual—a smooth, delicious beverage meant to be enjoyed everyday as part of a modern, mindful lifestyle.
           </p>
         </div>
@@ -44,16 +44,16 @@ export default function WhyDryGinger() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: index * 0.15 }}
-              className="bg-white p-8 rounded-2xl border border-earth-brown/5 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-start justify-between text-left group"
+              className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 shadow-lg hover:shadow-xl hover:bg-white/10 transition-all duration-300 flex flex-col items-start justify-between text-left group"
             >
               <div>
-                <span className="text-label-caps text-warm-gold/55 font-semibold mb-6 block tracking-widest group-hover:text-warm-gold transition-colors duration-300">
+                <span className="type-label text-accent/55 font-semibold mb-6 block tracking-widest group-hover:text-accent transition-colors duration-300">
                   {point.num}
                 </span>
-                <h3 className="text-2xl font-display text-primary mb-4">
+                <h3 className="text-2xl text-primary-text mb-4">
                   {point.title}
                 </h3>
-                <p className="text-sm lg:text-body-md text-on-surface-variant/95 leading-relaxed font-light">
+                <p className="text-sm lg:type-body text-secondary-text/95 leading-relaxed font-light">
                   {point.desc}
                 </p>
               </div>

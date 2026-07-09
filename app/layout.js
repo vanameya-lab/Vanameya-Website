@@ -1,15 +1,15 @@
-import { Inter, Playfair_Display } from "next/font/google";
+import { Manrope, Playfair_Display } from "next/font/google";
 import Loader from "@/components/Loader";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
 
 const playfair = Playfair_Display({
-  variable: "--font-playfair",
+  variable: "--font-heading",
   subsets: ["latin"],
   display: "swap",
 });
@@ -19,15 +19,24 @@ export const metadata = {
   description: "Modern Luxury Heritage for a premium Kerala-origin lifestyle brand.",
 };
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+      className={`${manrope.variable} ${playfair.variable} h-full antialiased overflow-x-hidden w-full`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-surface text-on-surface">
+      <body className="min-h-full flex flex-col font-body bg-background text-primary-text overflow-x-hidden w-full max-w-full">
         <Loader>
-          {children}
+          <div className="w-full max-w-full overflow-x-hidden">
+            {children}
+          </div>
         </Loader>
       </body>
     </html>

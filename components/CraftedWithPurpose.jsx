@@ -20,17 +20,17 @@ export default function CraftedWithPurpose() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1 }}
           >
-            <span className="text-label-caps text-warm-gold mb-6 block tracking-widest uppercase">Crafted With Purpose</span>
-            <h2 className="text-display-lg text-surface mb-8">Pure Ingredients.<br/> No Compromises.</h2>
-            <p className="text-body-lg text-surface-dim max-w-lg leading-relaxed mb-12">
+            <span className="type-label text-accent mb-6 block tracking-widest uppercase">Crafted With Purpose</span>
+            <h2 className="type-display-lg text-surface mb-8">Pure Ingredients.<br/> No Compromises.</h2>
+            <p className="type-body-lg text-surface-dim max-w-lg leading-relaxed mb-12">
               Sourced directly from artisan farmers who understand the soul of the soil. A tribute to the heritage and craftsmanship of Kerala.
             </p>
             
             <div className="flex flex-col gap-8 border-t border-surface/10 pt-8">
               {ingredients.map((ing, i) => (
                 <div key={i} className="flex flex-col">
-                  <h4 className="text-headline-md text-surface mb-2">{ing.name}</h4>
-                  <p className="text-label-caps text-warm-gold tracking-widest uppercase">{ing.desc}</p>
+                  <h4 className="type-h2 text-surface mb-2">{ing.name}</h4>
+                  <p className="type-label text-accent tracking-widest uppercase">{ing.desc}</p>
                 </div>
               ))}
             </div>
@@ -41,9 +41,9 @@ export default function CraftedWithPurpose() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.2 }}
-            className="w-full aspect-[3/4] bg-surface-dim/10 rounded flex items-center justify-center relative overflow-hidden"
+            className="w-full aspect-[3/4] bg-background/10 rounded flex items-center justify-center relative overflow-hidden"
           >
-            <span className="text-label-caps text-surface/50 tracking-widest">[ Premium Ingredients Visual ]</span>
+            <span className="type-label text-surface/50 tracking-widest">[ Premium Ingredients Visual ]</span>
           </motion.div>
 
         </div>

@@ -1,0 +1,33 @@
+@layer utilities {
+  /* Enforced Section Gaps to guarantee rhythmic spacing */
+  .section-gap-lg {
+    margin-top: clamp(4rem, 8vw, 8rem);
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+  }
+  
+  .section-gap-md {
+    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  
+  .section-gap-sm {
+    margin-top: clamp(2rem, 4vw, 3rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .section-pad-lg {
+    padding-top: clamp(4rem, 8vw, 8rem);
+    padding-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .section-pad-md {
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+  
+  /* Standard Container Pads */
+  .container-pad {
+    padding-left: clamp(1rem, 5vw, 3rem);
+    padding-right: clamp(1rem, 5vw, 3rem);
+  }
+}

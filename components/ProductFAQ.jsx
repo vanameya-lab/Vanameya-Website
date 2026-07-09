@@ -5,8 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function ProductFAQ() {
   const faqs = [
     {
-      q: "What is Chukku Kaapi?",
-      a: "Chukku Kaapi (translated as Dry Ginger Coffee) is a heritage spiced wellness brew native to Kerala, India. It contains zero or negligible coffee beans, instead relying on a potent infusion of dry ginger (Chukku), black pepper, green cardamom, and palm jaggery. It has been enjoyed for generations to stimulate digestion, boost immunity, and bring warmth to the body."
+      q: "What is Dry Ginger Coffee?",
+      a: "Dry Ginger Coffee (traditionally known as Chukku Kaapi) is a heritage spiced wellness brew native to Kerala, India. It contains zero or negligible coffee beans, instead relying on a potent infusion of dry ginger (Chukku), black pepper, green cardamom, and palm jaggery. It has been enjoyed for generations to stimulate digestion, boost immunity, and bring warmth to the body."
     },
     {
       q: "Can it be consumed daily?",
@@ -27,11 +27,11 @@ export default function ProductFAQ() {
   ];
 
   return (
-    <section className="w-full bg-[#111414] py-24 md:py-32 px-6 text-white relative z-20 border-t border-white/5">
+    <section className="w-full bg-background section-pad-lg px-6 text-primary-text relative z-20 border-t border-border">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-20">
-          <span className="text-label-caps text-warm-gold mb-4 tracking-[0.2em] block uppercase">Learn More</span>
-          <h2 className="text-display-lg text-[#8ed2d5] font-display font-semibold">Frequently Asked Questions</h2>
+          <span className="type-label text-accent mb-4 tracking-[0.2em] block uppercase">Learn More</span>
+          <h2 className="type-display-lg text-accent font-semibold">Frequently Asked Questions</h2>
         </div>
 
         <div className="flex flex-col gap-6">
@@ -48,13 +48,13 @@ function AccordionItem({ q, a, idx }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/10 pb-6">
+    <div className="border-b border-border pb-6">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center text-left py-4 text-white hover:text-[#8ed2d5] transition-colors focus:outline-none group cursor-pointer"
+        className="w-full flex justify-between items-center text-left py-4 text-primary-text hover:text-accent transition-colors focus:outline-none group cursor-pointer"
       >
-        <span className="text-lg md:text-xl font-display font-medium pr-8">{q}</span>
-        <span className={`text-2xl text-warm-gold transform transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+        <span className="text-lg md:text-xl font-medium pr-8">{q}</span>
+        <span className={`text-2xl text-accent transform transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
           +
         </span>
       </button>
@@ -68,7 +68,7 @@ function AccordionItem({ q, a, idx }) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="text-sm md:text-base text-white/70 font-light leading-relaxed pt-2">
+            <p className="text-sm md:text-base text-primary-text/70 font-light leading-relaxed pt-2">
               {a}
             </p>
           </motion.div>
