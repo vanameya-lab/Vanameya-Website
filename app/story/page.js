@@ -11,14 +11,14 @@ export default function Story() {
       <Header />
 
       {/* Hero Section */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative w-full min-h-[60vh] md:min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
             src="/ourstoryimage.png"
             alt="Misty Kerala Forest - VANAMÉYA Heritage"
             fill
             priority
-            className="object-cover"
+            className="object-cover object-center"
             sizes="100vw"
           />
           {/* Gradients to blend top and bottom, and enhance contrast */}
