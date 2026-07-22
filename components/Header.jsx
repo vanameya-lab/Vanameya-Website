@@ -3,11 +3,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/components/CartContext";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { cartItemCount, toggleCart, isInitialized } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,24 +87,58 @@ export default function Header() {
             ))}
           </nav>
           
-          <Link 
-            href="/shop-now" 
-            className="type-label text-accent hover:opacity-80 transition-opacity hidden md:block cursor-pointer"
-          >
-            Shop Now
-          </Link>
+          <div className="hidden md:flex items-center gap-6 relative z-[70]">
+            <Link 
+              href="/shop-now" 
+              className="type-label text-accent hover:opacity-80 transition-opacity cursor-pointer"
+            >
+              Shop Now
+            </Link>
+            
+            <button 
+              onClick={() => toggleCart()}
+              className="relative text-accent hover:opacity-80 transition-opacity flex items-center p-2 -mr-2"
+              aria-label="Cart"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {isInitialized && cartItemCount > 0 && (
+                <span className="absolute top-0 right-0 bg-accent text-background text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </button>
+          </div>
           
-          <button 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-accent hover:opacity-80 cursor-pointer p-2 -mr-2 relative z-[70]"
-            aria-label="Toggle Menu"
-          >
-            <div className="w-6 h-5 relative flex flex-col justify-between">
-              <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${mobileMenuOpen ? 'rotate-45 translate-x-[2px]' : ''}`} />
-              <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
-              <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${mobileMenuOpen ? '-rotate-45 translate-x-[2px]' : ''}`} />
-            </div>
-          </button>
+          <div className="md:hidden flex items-center gap-2 relative z-[70]">
+            <button 
+              onClick={() => toggleCart()}
+              className="relative text-accent hover:opacity-80 transition-opacity p-2"
+              aria-label="Cart"
+            >
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+              </svg>
+              {isInitialized && cartItemCount > 0 && (
+                <span className="absolute top-0 right-0 bg-accent text-background text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                  {cartItemCount}
+                </span>
+              )}
+            </button>
+            
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="text-accent hover:opacity-80 cursor-pointer p-2 -mr-2 relative"
+              aria-label="Toggle Menu"
+            >
+              <div className="w-6 h-5 relative flex flex-col justify-between">
+                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${mobileMenuOpen ? 'rotate-45 translate-x-[2px]' : ''}`} />
+                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                <span className={`w-full h-0.5 bg-current rounded-full transition-all duration-300 origin-left ${mobileMenuOpen ? '-rotate-45 translate-x-[2px]' : ''}`} />
+              </div>
+            </button>
+          </div>
         </div>
       </motion.header>
 

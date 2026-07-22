@@ -22,7 +22,7 @@ export default function PDPNutritionSpecs() {
     { label: "Shelf Life", value: "12 Months from date of manufacture" },
     { label: "Origin", value: "Kerala, India" },
     { label: "Category", value: "Wellness Beverage / Instant Coffee" },
-    { label: "FSSAI License", value: "113XXXXXXXXXXX" },
+    { label: "FSSAI License", value: "11326009000235" },
   ];
 
   return (

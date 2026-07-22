@@ -1,49 +1,55 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useCart } from "../CartContext";
 
 export default function PDPPurchasePanel() {
   const [purchaseType, setPurchaseType] = useState("one-time"); // "one-time" or "subscribe"
-  const [packSize, setPackSize] = useState(1); // 1, 2, or 3
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  const { addToCart } = useCart();
 
   const basePrice = 149;
   const originalPrice = 149;
   const subscriptionDiscount = 0.85;
 
-  const getPrice = (type = purchaseType, pSize = packSize, qty = quantity) => {
+  const getPrice = (type = purchaseType, qty = quantity) => {
     let pricePerBox = type === "subscribe" ? Math.round(basePrice * subscriptionDiscount) : basePrice;
-    let subtotal = pricePerBox * pSize * qty;
-    if (pSize === 2) subtotal = subtotal * 0.95;
-    if (pSize === 3) subtotal = subtotal * 0.95;
-    if (pSize >= 5) subtotal = subtotal * 0.93;
+    let subtotal = pricePerBox * qty;
+    if (qty >= 5) subtotal = subtotal * 0.94; // 6% discount
+    else if (qty >= 2) subtotal = subtotal * 0.96; // 4% discount
     return Math.round(subtotal);
   };
 
-  const getOriginalPrice = (pSize = packSize, qty = quantity) => {
-    return originalPrice * pSize * qty;
+  const getOriginalPrice = (qty = quantity) => {
+    return originalPrice * qty;
   };
 
   const handleAddToBag = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      setToastMessage("Added to Bag! Your premium wellness ritual is reserved.");
-      setTimeout(() => setToastMessage(""), 4000);
-    }, 1200);
+      addToCart(
+        { 
+          id: "premium-dry-ginger", 
+          name: "Instant Dry Ginger Coffee",
+          image: "/products/dry-ginger-coffee/pack.png"
+        },
+        quantity,
+        purchaseType
+      );
+    }, 400);
   };
 
   const getWhatsAppLink = () => {
     const text = `Hello Vanaméya! I'd like to order:
-- Instant Dry Ginger Coffee (${packSize * 10} Sachets)
+- Instant Dry Ginger Coffee (${quantity * 10} Sachets)
 - Type: ${purchaseType === "subscribe" ? "Monthly Subscription" : "One-time"}
-- Quantity: ${quantity}
-- Pack Size: ${packSize} Box(es)
+- Quantity: ${quantity} Box(es)
 - Total: ₹${getPrice()}
 Please guide me through checkout.`;
-    return `https://wa.me/919999999999?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/919495965955?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -98,14 +104,11 @@ Please guide me through checkout.`;
           {purchaseType === "subscribe" && (
             <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 15%</span>
           )}
-          {packSize === 2 && (
-            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 5%</span>
+          {quantity >= 2 && quantity < 5 && (
+            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 4%</span>
           )}
-          {packSize === 3 && (
-            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 5%</span>
-          )}
-          {packSize >= 5 && (
-            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 7% + Free Shipping</span>
+          {quantity >= 5 && (
+            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 6% + Free Shipping</span>
           )}
         </div>
         <span className="text-xs text-secondary-text/60 mt-1">Inclusive of all taxes. Ships in 24 hours.</span>
@@ -130,10 +133,10 @@ Please guide me through checkout.`;
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            {getPrice("one-time", packSize, 1) < getOriginalPrice(packSize, 1) && (
-              <span className="text-xs sm:text-sm text-secondary-text/50 line-through">₹{getOriginalPrice(packSize, 1)}</span>
+            {getPrice("one-time", 1) < getOriginalPrice(1) && (
+              <span className="text-xs sm:text-sm text-secondary-text/50 line-through">₹{getOriginalPrice(1)}</span>
             )}
-            <span className="text-sm sm:text-base font-semibold text-primary-text">₹{getPrice("one-time", packSize, 1)}</span>
+            <span className="text-sm sm:text-base font-semibold text-primary-text">₹{getPrice("one-time", 1)}/box</span>
           </div>
         </div>
 
@@ -148,7 +151,7 @@ Please guide me through checkout.`;
               <span className="text-[10px] sm:text-xs text-secondary-text/80 break-words line-clamp-2">Delivered monthly, cancel anytime</span>
             </div>
           </div>
-          <span className="text-sm sm:text-base font-semibold text-primary-text shrink-0">₹{getPrice("subscribe", packSize, 1)}</span>
+          <span className="text-sm sm:text-base font-semibold text-primary-text shrink-0">₹{getPrice("subscribe", 1)}/box</span>
         </div>
       </div>
 
@@ -156,20 +159,20 @@ Please guide me through checkout.`;
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3">
           <span className="type-caption text-secondary-text font-bold uppercase tracking-wider">Pack Size</span>
-          <span className="text-[10px] sm:text-xs text-accent font-semibold">{packSize * 10} Sachets Total</span>
+          <span className="text-[10px] sm:text-xs text-accent font-semibold">{quantity * 10} Sachets Total</span>
         </div>
         <div className="grid grid-cols-2 gap-2 sm:gap-3">
           {[
             { size: 1, label: "1 Box", save: "" },
-            { size: 2, label: "2 Boxes", save: "Save 5%" },
-            { size: 3, label: "3 Boxes", save: "Save 5%" },
-            { size: 5, label: "5 Boxes", save: "Save 7%" }
+            { size: 2, label: "2 Boxes", save: "Save 4%" },
+            { size: 3, label: "3 Boxes", save: "Save 4%" },
+            { size: 5, label: "5 Boxes", save: "Save 6%" }
           ].map((item) => (
             <button
               key={item.size}
-              onClick={() => setPackSize(item.size)}
+              onClick={() => setQuantity(item.size)}
               className={`relative p-2 sm:p-3 border-2 rounded-xl text-center transition-all duration-300 flex flex-col items-center justify-center min-h-[50px] sm:min-h-[60px] ${
-                packSize === item.size ? "border-accent bg-accent/5" : "border-border/50 hover:border-border bg-white/5"
+                quantity === item.size ? "border-accent bg-accent/5" : "border-border/50 hover:border-border bg-white/5"
               }`}
             >
               {item.save && (
@@ -177,7 +180,7 @@ Please guide me through checkout.`;
                   {item.save}
                 </span>
               )}
-              <span className={`block text-xs sm:text-sm font-semibold ${packSize === item.size ? "text-primary-text" : "text-secondary-text"}`}>{item.label}</span>
+              <span className={`block text-xs sm:text-sm font-semibold ${quantity === item.size ? "text-primary-text" : "text-secondary-text"}`}>{item.label}</span>
             </button>
           ))}
         </div>

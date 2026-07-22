@@ -57,7 +57,7 @@ export default function TermsAndConditions() {
         <li><strong>Email:</strong> [Support Email]</li>
         <li><strong>Phone:</strong> [Phone Number]</li>
         <li><strong>Address:</strong> [Business Address], Kannur, Kerala, India</li>
-        <li><strong>FSSAI License:</strong> [FSSAI License Number]</li>
+        <li><strong>FSSAI License:</strong> 11326009000235</li>
         <li><strong>GSTIN:</strong> [GST Number]</li>
       </ul>
     </LegalPageLayout>

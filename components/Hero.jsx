@@ -182,7 +182,7 @@ export default function Hero({ frames = [] }) {
           </motion.div>
 
           {/* Moment 1: Morning */}
-          <div ref={moment1Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto">
+          <div ref={moment1Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-none">
             <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">01 / Focus</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Natural Morning Energy</h3>
@@ -193,7 +193,7 @@ export default function Hero({ frames = [] }) {
           </div>
 
           {/* Moment 2: Midday */}
-          <div ref={moment2Ref} className="absolute top-[25%] md:top-1/3 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto text-left md:text-right">
+          <div ref={moment2Ref} className="absolute top-[25%] md:top-1/3 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-none text-left md:text-right">
             <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">02 / Balance</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Everyday Wellness</h3>
@@ -204,7 +204,7 @@ export default function Hero({ frames = [] }) {
           </div>
 
           {/* Moment 3: Evening */}
-          <div ref={moment3Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-auto">
+          <div ref={moment3Ref} className="absolute top-[20%] md:top-1/4 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 w-[92%] md:w-full max-w-md opacity-0 pointer-events-none">
             <div className="bg-background/60 md:bg-background/40 backdrop-blur-lg p-6 md:p-8 rounded-3xl border border-border/50 shadow-2xl">
               <span className="type-label text-accent mb-4 block tracking-[0.15em] uppercase drop-shadow-sm">03 / Unwind</span>
               <h3 className="type-h2 text-primary-text mb-4 drop-shadow-lg leading-tight">Comfort In Every Season</h3>

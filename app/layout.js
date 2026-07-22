@@ -1,5 +1,7 @@
 import { Manrope, Playfair_Display } from "next/font/google";
 import Loader from "@/components/Loader";
+import { CartProvider } from "@/components/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -33,11 +35,14 @@ export default function RootLayout({ children }) {
       className={`${manrope.variable} ${playfair.variable} h-full antialiased overflow-x-clip w-full`}
     >
       <body className="min-h-full flex flex-col font-body bg-background text-primary-text overflow-x-clip w-full max-w-full">
-        <Loader>
-          <div className="w-full max-w-full overflow-x-clip">
-            {children}
-          </div>
-        </Loader>
+        <CartProvider>
+          <Loader>
+            <div className="w-full max-w-full overflow-x-clip">
+              {children}
+            </div>
+            <CartDrawer />
+          </Loader>
+        </CartProvider>
       </body>
     </html>
   );

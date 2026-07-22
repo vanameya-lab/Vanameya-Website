@@ -3,7 +3,7 @@ import ProductHero from "@/components/ProductHero";
 import CraftedWithPurposeProduct from "@/components/CraftedWithPurposeProduct";
 import WhenToEnjoy from "@/components/WhenToEnjoy";
 import WhyChooseVanameya from "@/components/WhyChooseVanameya";
-import ProductReviews from "@/components/ProductReviews";
+
 import ProductFAQ from "@/components/ProductFAQ";
 import Footer from "@/components/Footer";
 
@@ -29,8 +29,6 @@ export default function Shop() {
       {/* 8. Why Choose VANAMÉYA Brand Pillars */}
       <WhyChooseVanameya />
 
-      {/* 9. Verified Customer Reviews */}
-      <ProductReviews />
 
       {/* 11. FAQ Accordions */}
       <ProductFAQ />

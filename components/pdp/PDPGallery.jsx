@@ -128,8 +128,8 @@ export default function PDPGallery() {
                 src={images[currentIndex].src}
                 alt={images[currentIndex].alt}
                 fill
-                priority={currentIndex === 0}
-                sizes="50vw"
+                priority={true}
+                sizes="(max-width: 1024px) 100vw, 500px"
                 className={`transition-all duration-300 ${isZoomed ? "object-none scale-150" : "object-cover"}`}
                 style={isZoomed ? { transformOrigin: `${mousePos.x}% ${mousePos.y}%` } : {}}
               />
@@ -149,8 +149,8 @@ export default function PDPGallery() {
                 src={img.src}
                 alt={img.alt}
                 fill
-                priority={idx === 0}
-                sizes="100vw"
+                priority={idx <= 1}
+                sizes="(max-width: 1024px) 100vw, 500px"
                 className="object-cover"
               />
             </div>
