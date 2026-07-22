@@ -41,7 +41,8 @@ export default function CheckoutPage() {
   const [paymentError, setPaymentError] = useState(null);
 
   const shippingThreshold = 500;
-  const shippingCharge = 50;
+  const isKerala = formDataState.state.trim().toLowerCase() === 'kerala';
+  const shippingCharge = isKerala ? 50 : 70;
   const requiresShipping = cartSubtotal < shippingThreshold && cartSubtotal > 0;
   const shippingCost = requiresShipping ? shippingCharge : 0;
   const total = cartSubtotal + shippingCost;
