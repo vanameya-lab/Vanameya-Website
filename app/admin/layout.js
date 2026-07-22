@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
+export const dynamic = 'force-dynamic';
 import LogoutButton from "./LogoutButton";
 
 export default function AdminLayout({ children }) {
