@@ -13,7 +13,14 @@ export function CartProvider({ children }) {
     const savedCart = localStorage.getItem("vanameya_cart");
     if (savedCart) {
       try {
-        setCart(JSON.parse(savedCart));
+        const parsedCart = JSON.parse(savedCart);
+        const migratedCart = parsedCart.map(item => {
+          if (item.product && typeof item.product.image === 'string') {
+            item.product.image = item.product.image.replace('Pack.png', 'pack.png');
+          }
+          return item;
+        });
+        setCart(migratedCart);
       } catch (e) {
         console.error("Failed to parse cart from localStorage", e);
       }

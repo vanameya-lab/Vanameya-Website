@@ -36,7 +36,7 @@ export default function RefundAndReplacementPolicy() {
 
       <h2>4. Resolution Process</h2>
       <p>
-        Once you submit your claim and unboxing video to our support team at <strong>[Support Email]</strong>, we will verify the details. Upon successful verification of the damage, VANAMÉYA will, at its sole discretion, offer one of the following:
+        Once you submit your claim and unboxing video to our support team at <strong><a href="mailto:info@vanameya.com" className="text-accent hover:underline">info@vanameya.com</a></strong>, we will verify the details. Upon successful verification of the damage, VANAMÉYA will, at its sole discretion, offer one of the following:
       </p>
       <ul>
         <li>A free replacement of the damaged product.</li>
@@ -51,8 +51,8 @@ export default function RefundAndReplacementPolicy() {
         To initiate a damage claim, please reach out to us immediately at:
       </p>
       <ul>
-        <li><strong>Email:</strong> [Support Email]</li>
-        <li><strong>Phone:</strong> [Phone Number]</li>
+        <li><strong>Email:</strong> <a href="mailto:info@vanameya.com" className="text-accent hover:underline">info@vanameya.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+919495965955" className="text-accent hover:underline">9495965955</a></li>
       </ul>
       <p>Please include your Order ID and the unboxing video in your initial communication.</p>
     </LegalPageLayout>

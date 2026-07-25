@@ -1,4 +1,4 @@
-import PDFDocument from 'pdfkit/js/pdfkit.standalone.js';
+import PDFDocument from 'pdfkit';
 import { getOrder } from './order.service';
 import { format } from 'date-fns';
 import path from 'path';

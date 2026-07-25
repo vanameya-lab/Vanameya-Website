@@ -24,9 +24,14 @@ export default function PDPStickyMobileBar() {
   const handleBuyNow = () => {
     setLoading(true);
     setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const element = document.getElementById("purchase-panel");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       setLoading(false);
-    }, 500);
+    }, 100);
   };
 
   return (
@@ -42,7 +47,7 @@ export default function PDPStickyMobileBar() {
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="w-10 h-10 sm:w-12 sm:h-12 relative rounded-lg overflow-hidden bg-white/5 border border-border/30 shrink-0">
               <Image 
-                src="/products/dry-ginger-coffee/Pack.png" 
+                src="/products/dry-ginger-coffee/pack.png" 
                 alt="Product" 
                 fill 
                 className="object-contain p-1"

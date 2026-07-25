@@ -53,7 +53,7 @@ Please guide me through checkout.`;
   };
 
   return (
-    <div className="flex flex-col text-left lg:sticky lg:top-24 w-full h-full lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto pb-24 hide-scrollbar">
+    <div id="purchase-panel" className="flex flex-col text-left lg:sticky lg:top-24 w-full h-full lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto pb-24 hide-scrollbar">
       
       {/* Toast Notification */}
       <AnimatePresence>

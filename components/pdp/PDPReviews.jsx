@@ -171,7 +171,6 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
                 <option value="newest" className="bg-surface text-primary-text">Newest First</option>
                 <option value="highest" className="bg-surface text-primary-text">Highest Rating</option>
                 <option value="lowest" className="bg-surface text-primary-text">Lowest Rating</option>
-                <option value="photos" className="bg-surface text-primary-text">With Photos</option>
               </select>
             </div>
 

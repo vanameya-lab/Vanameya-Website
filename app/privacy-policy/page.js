@@ -58,8 +58,8 @@ export default function PrivacyPolicy() {
         If you have any questions about this Privacy Policy or how your data is handled, please reach out to us at:
       </p>
       <ul>
-        <li><strong>Email:</strong> [Support Email]</li>
-        <li><strong>Address:</strong> [Business Address], Kannur, Kerala, India</li>
+        <li><strong>Email:</strong> <a href="mailto:info@vanameya.com" className="text-accent hover:underline">info@vanameya.com</a></li>
+        <li><strong>Address:</strong> Vanameya Exports and Imports, Palakkad, Kerala 678582, India</li>
       </ul>
     </LegalPageLayout>
   );

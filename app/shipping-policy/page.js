@@ -48,7 +48,7 @@ export default function ShippingPolicy() {
 
       <h2>6. Need Assistance?</h2>
       <p>
-        If your order is significantly delayed or you are facing issues with your tracking number, please contact us at <strong>[Support Email]</strong> or <strong>[Phone Number]</strong> so we can investigate on your behalf.
+        If your order is significantly delayed or you are facing issues with your tracking number, please contact us at <strong><a href="mailto:info@vanameya.com" className="text-accent hover:underline">info@vanameya.com</a></strong> or <strong><a href="tel:+919495965955" className="text-accent hover:underline">9495965955</a></strong> so we can investigate on your behalf.
       </p>
     </LegalPageLayout>
   );

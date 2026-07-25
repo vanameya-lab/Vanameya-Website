@@ -107,7 +107,11 @@ export default function CheckoutPage() {
     const newErrors = {};
     if (!formDataState.fullName.trim()) newErrors.fullName = "Name is required";
     if (!formDataState.phone.trim()) newErrors.phone = "Phone is required";
-    else if (!/^\d{10}$/.test(formDataState.phone.replace(/\D/g,''))) newErrors.phone = "Valid 10-digit phone required";
+    else {
+      const digits = formDataState.phone.replace(/\D/g, '');
+      const isValidPhone = digits.length === 10 || (digits.length === 12 && digits.startsWith('91')) || (digits.length === 11 && digits.startsWith('0'));
+      if (!isValidPhone) newErrors.phone = "Valid 10-digit phone required";
+    }
     
     if (formDataState.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formDataState.email)) {
       newErrors.email = "Valid email is required";
@@ -134,6 +138,14 @@ export default function CheckoutPage() {
   const handleAction = (payload) => {
     if (validateForm()) {
       formAction(payload);
+    } else {
+      setTimeout(() => {
+        const errorElement = document.querySelector('.border-error');
+        if (errorElement) {
+          errorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          errorElement.focus();
+        }
+      }, 100);
     }
   };
 

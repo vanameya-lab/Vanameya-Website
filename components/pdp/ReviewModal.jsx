@@ -8,11 +8,9 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
-  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  const fileInputRef = useRef(null);
 
   // In a real app, you would fetch these from the authenticated user's session Context
   // For the sake of this implementation, we use placeholders or expect them to be passed/selected
@@ -21,32 +19,7 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
   const CUSTOMER_ID = "00000000-0000-0000-0000-000000000000"; 
   const ORDER_ID = "00000000-0000-0000-0000-000000000000";
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    
-    if (images.length + files.length > 3) {
-      setError("Maximum 3 images allowed.");
-      return;
-    }
 
-    const validFiles = files.filter(file => {
-      const isTypeValid = ['image/jpeg', 'image/png', 'image/webp'].includes(file.type);
-      const isSizeValid = file.size <= 5 * 1024 * 1024; // 5MB
-      return isTypeValid && isSizeValid;
-    });
-
-    if (validFiles.length !== files.length) {
-      setError("Some files were rejected. Only JPG, PNG, WEBP under 5MB are allowed.");
-    } else {
-      setError("");
-    }
-
-    setImages(prev => [...prev, ...validFiles].slice(0, 3));
-  };
-
-  const removeImage = (index) => {
-    setImages(prev => prev.filter((_, i) => i !== index));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,8 +43,7 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         productId,
         rating,
         title,
-        review,
-        images
+        review
       });
 
       setSuccess(true);
@@ -82,7 +54,6 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         setRating(0);
         setTitle("");
         setReview("");
-        setImages([]);
       }, 3000);
 
     } catch (err) {
@@ -182,45 +153,7 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
                   />
                 </div>
 
-                {/* Image Upload */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-sm font-semibold text-primary-text">Add Photos (Optional, Max 3)</label>
-                  <input
-                    type="file"
-                    accept="image/jpeg, image/png, image/webp"
-                    multiple
-                    ref={fileInputRef}
-                    onChange={handleImageChange}
-                    className="hidden"
-                  />
-                  
-                  <div className="flex flex-wrap gap-3">
-                    {images.map((img, idx) => (
-                      <div key={idx} className="relative w-20 h-20 rounded-xl overflow-hidden border border-border/50">
-                        <img src={URL.createObjectURL(img)} alt="preview" className="w-full h-full object-cover" />
-                        <button
-                          type="button"
-                          onClick={() => removeImage(idx)}
-                          className="absolute top-1 right-1 w-5 h-5 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-error transition-colors"
-                        >
-                          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                        </button>
-                      </div>
-                    ))}
-                    
-                    {images.length < 3 && (
-                      <button
-                        type="button"
-                        onClick={() => fileInputRef.current?.click()}
-                        className="w-20 h-20 rounded-xl border-2 border-dashed border-border/50 hover:border-accent flex flex-col items-center justify-center text-secondary-text hover:text-accent transition-colors bg-white/5"
-                      >
-                        <svg className="w-6 h-6 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4v16m8-8H4" /></svg>
-                        <span className="text-[10px] font-semibold uppercase">Add</span>
-                      </button>
-                    )}
-                  </div>
-                  <p className="text-xs text-secondary-text/60">JPG, PNG, WEBP up to 5MB each.</p>
-                </div>
+
 
                 {error && <p className="text-error text-sm font-medium">{error}</p>}
 

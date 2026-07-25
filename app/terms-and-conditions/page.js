@@ -54,11 +54,11 @@ export default function TermsAndConditions() {
         If you have any questions or concerns regarding these terms, please contact us at:
       </p>
       <ul>
-        <li><strong>Email:</strong> [Support Email]</li>
-        <li><strong>Phone:</strong> [Phone Number]</li>
-        <li><strong>Address:</strong> [Business Address], Kannur, Kerala, India</li>
+        <li><strong>Email:</strong> <a href="mailto:info@vanameya.com" className="text-accent hover:underline">info@vanameya.com</a></li>
+        <li><strong>Phone:</strong> <a href="tel:+919495965955" className="text-accent hover:underline">9495965955</a></li>
+        <li><strong>Address:</strong> Vanameya Exports and Imports, Palakkad, Kerala 678582, India</li>
         <li><strong>FSSAI License:</strong> 11326009000235</li>
-        <li><strong>GSTIN:</strong> [GST Number]</li>
+        <li><strong>GSTIN:</strong> 32DHOPA7605F1ZM</li>
       </ul>
     </LegalPageLayout>
   );
