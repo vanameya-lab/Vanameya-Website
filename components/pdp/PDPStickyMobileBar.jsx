@@ -2,8 +2,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useCart } from "@/components/CartContext";
 
 export default function PDPStickyMobileBar() {
+  const { addToCart, cart, toggleCart } = useCart();
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   
@@ -24,14 +26,25 @@ export default function PDPStickyMobileBar() {
   const handleBuyNow = () => {
     setLoading(true);
     setTimeout(() => {
-      const element = document.getElementById("purchase-panel");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      const alreadyInCart = cart.some(item => item.product.id === "premium-dry-ginger");
+      
+      if (alreadyInCart) {
+        // Just open the cart without adding a duplicate
+        toggleCart();
       } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Add 1 to cart
+        addToCart(
+          { 
+            id: "premium-dry-ginger", 
+            name: "Instant Dry Ginger Coffee",
+            image: "/products/dry-ginger-coffee/pack.png"
+          },
+          1,
+          "one-time"
+        );
       }
       setLoading(false);
-    }, 100);
+    }, 400);
   };
 
   return (

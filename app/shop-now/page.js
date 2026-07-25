@@ -25,7 +25,7 @@ export default function ShopNow() {
       {/* Hero Section: Two Column Sticky Layout for Desktop */}
       <section className="w-full pt-24 pb-12 px-4 md:px-8 bg-surface relative z-10 overflow-hidden md:overflow-visible">
         <div className="max-w-container-max mx-auto">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+          <div className="grid lg:grid-cols-12 gap-4 lg:gap-20 items-start">
             
             {/* Left: Product Gallery */}
             <div className="lg:col-span-7 w-full h-full min-w-0">

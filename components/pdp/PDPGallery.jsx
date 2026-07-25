@@ -108,7 +108,7 @@ export default function PDPGallery() {
       </div>
 
       {/* Main Image Area */}
-      <div className="relative w-full aspect-square rounded-3xl overflow-hidden bg-white/5 border border-border group min-w-0 lg:max-h-[500px] lg:max-w-[500px]">
+      <div className="relative w-full aspect-[4/3] lg:aspect-square rounded-3xl overflow-hidden bg-white/5 border border-border group min-w-0 lg:max-h-[500px] lg:max-w-[500px]">
         
         {/* DESKTOP: Animated & Zoomable */}
         <div className="hidden lg:block w-full h-full cursor-zoom-in">
@@ -186,6 +186,14 @@ export default function PDPGallery() {
             />
           ))}
         </div>
+      </div>
+
+      {/* Mobile Scroll Hint */}
+      <div className="lg:hidden flex items-center justify-center pt-2 pb-1 w-full text-secondary-text/70 animate-bounce">
+        <span className="text-[10px] uppercase tracking-widest mr-2 font-semibold">Scroll to Buy</span>
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
       </div>
       
     </div>

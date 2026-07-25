@@ -90,7 +90,7 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-6 relative z-[70]">
             <Link 
               href="/shop-now" 
-              className="type-label text-accent hover:opacity-80 transition-opacity cursor-pointer"
+              className="text-xs font-semibold uppercase tracking-widest text-background bg-accent px-5 py-2.5 rounded-full hover:bg-accent-hover transition-colors cursor-pointer"
             >
               Shop Now
             </Link>
@@ -112,6 +112,12 @@ export default function Header() {
           </div>
           
           <div className="md:hidden flex items-center gap-2 relative z-[70]">
+            <Link 
+              href="/shop-now" 
+              className="text-[10px] font-semibold uppercase tracking-widest text-background bg-accent px-3 py-1.5 rounded-full mr-1 hover:bg-accent-hover transition-colors"
+            >
+              Shop Now
+            </Link>
             <button 
               onClick={() => toggleCart()}
               className="relative text-accent hover:opacity-80 transition-opacity p-2"

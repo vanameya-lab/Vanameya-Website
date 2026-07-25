@@ -166,10 +166,10 @@ export default function Hero({ frames = [] }) {
               
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto">
                 <Link 
-                  href="/shop" 
+                  href="/shop-now" 
                   className="w-full sm:w-auto bg-accent text-surface-elevated type-label tracking-widest uppercase hover:bg-accent-hover transition-all duration-300 py-4 px-8 rounded flex items-center justify-center gap-2 font-semibold cursor-pointer shadow-lg"
                 >
-                  Begin Ritual
+                  Shop Now
                 </Link>
                 <Link 
                   href="/story" 
