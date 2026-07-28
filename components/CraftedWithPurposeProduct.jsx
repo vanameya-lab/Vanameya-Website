@@ -23,9 +23,9 @@ const FlashCard = ({ ing, index, className = "" }) => {
         transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
       >
         {/* Front */}
-        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end p-5 rounded-3xl border border-border bg-gradient-to-br from-white/[0.04] to-transparent [backface-visibility:hidden] group-hover:border-white/20 transition-colors overflow-hidden">
+        <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-end p-5 rounded-3xl border border-border bg-gradient-to-br from-white/[0.04] to-transparent [backface-visibility:hidden] [-webkit-backface-visibility:hidden] group-hover:border-white/20 transition-colors">
           {ing.img && (
-            <>
+            <div className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none">
               <Image 
                 src={ing.img} 
                 alt={ing.name} 
@@ -34,7 +34,7 @@ const FlashCard = ({ ing, index, className = "" }) => {
                 className="object-cover opacity-60 group-hover:scale-105 group-hover:opacity-80 transition-all duration-700" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-            </>
+            </div>
           )}
           <div className="relative z-10 flex flex-col items-center justify-end w-full">
             <h4 className="text-xl xl:text-2xl text-primary-text mb-1 text-center font-semibold drop-shadow-md">{ing.name}</h4>
@@ -51,7 +51,7 @@ const FlashCard = ({ ing, index, className = "" }) => {
         </div>
 
         {/* Back */}
-        <div className="absolute inset-0 w-full h-full flex flex-col justify-center p-5 sm:p-6 rounded-3xl border border-accent/30 bg-background [backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_30px_rgba(212,175,55,0.05)]">
+        <div className="absolute inset-0 w-full h-full flex flex-col justify-center p-5 sm:p-6 rounded-3xl border border-accent/30 bg-background [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] shadow-[0_0_30px_rgba(212,175,55,0.05)]">
           <h4 className="text-base sm:text-lg text-accent mb-2">{ing.name}</h4>
           <p className="text-xs sm:text-sm text-secondary-text font-light leading-relaxed">
             {ing.story}

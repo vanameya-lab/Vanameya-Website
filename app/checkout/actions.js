@@ -21,6 +21,10 @@ export async function processCheckout(prevState, formData) {
       pincode: formData.get("pincode"),
     };
 
+    if (!customerData.pincode || !/^\d{6}$/.test(customerData.pincode.trim())) {
+      return { success: false, error: "Valid 6-digit pincode is required." };
+    }
+
     // Extract Cart Data
     const cartDataStr = formData.get("cartData");
     if (!cartDataStr) {

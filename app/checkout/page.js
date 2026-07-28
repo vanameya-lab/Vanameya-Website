@@ -7,8 +7,9 @@ import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState, startTransition } from "react";
 import Script from "next/script";
 import { processCheckout, verifyPayment } from "./actions";
+import { calculateShipping } from "@/utils/shippingCalculator";
 
-const InputField = ({ label, name, type = "text", placeholder, required, className = "", value, onChange, error, autoComplete }) => (
+const InputField = ({ label, name, type = "text", placeholder, required, className = "", value, onChange, error, autoComplete, maxLength }) => (
   <div className={`flex flex-col gap-1 ${className}`}>
     <label className="text-xs uppercase tracking-widest text-secondary-text font-bold">
       {label} {required && <span className="text-error">*</span>}
@@ -20,6 +21,7 @@ const InputField = ({ label, name, type = "text", placeholder, required, classNa
       value={value || ""}
       onChange={onChange}
       autoComplete={autoComplete}
+      maxLength={maxLength}
       className={`w-full bg-white/5 border ${error ? 'border-error' : 'border-border/30'} rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:border-accent transition-colors`}
     />
     {error && <span className="text-xs text-error">{error}</span>}
@@ -40,10 +42,15 @@ export default function CheckoutPage() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
 
-  const shippingThreshold = 500;
-  const isKerala = formDataState.state.trim().toLowerCase() === 'kerala';
-  const shippingCharge = isKerala ? 50 : 70;
+  const shippingThreshold = 999;
   const requiresShipping = cartSubtotal < shippingThreshold && cartSubtotal > 0;
+  
+  // Calculate total boxes from cart
+  const totalBoxes = cart.reduce((total, item) => total + item.quantity, 0);
+  
+  // Calculate dynamic shipping charge based on state and weight
+  const shippingCharge = calculateShipping(formDataState.state, totalBoxes);
+  
   const shippingCost = requiresShipping ? shippingCharge : 0;
   const total = cartSubtotal + shippingCost;
 
@@ -129,9 +136,19 @@ export default function CheckoutPage() {
   };
 
   const handleChange = (e) => {
-    setFormDataState(prev => ({ ...prev, [e.target.name]: e.target.value }));
-    if (errors[e.target.name]) {
-      setErrors(prev => ({ ...prev, [e.target.name]: "" }));
+    let { name, value } = e.target;
+    
+    // Restrict phone and pincode to numbers only
+    if (name === 'pincode') {
+      value = value.replace(/\D/g, '').slice(0, 6);
+    }
+    if (name === 'phone') {
+      value = value.replace(/\D/g, '').slice(0, 15);
+    }
+
+    setFormDataState(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -208,7 +225,7 @@ export default function CheckoutPage() {
               <h2 className="text-xl font-heading font-semibold text-primary-text mb-6 pb-4 border-b border-border/20">1. Contact Information</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <InputField label="Full Name" name="fullName" placeholder="John Doe" required className="md:col-span-2" value={formDataState.fullName} onChange={handleChange} error={errors.fullName} autoComplete="name" />
-                <InputField label="Phone Number" name="phone" type="tel" placeholder="+91 99999 99999" required value={formDataState.phone} onChange={handleChange} error={errors.phone} autoComplete="tel" />
+                <InputField label="Phone Number" name="phone" type="tel" placeholder="+91 99999 99999" required value={formDataState.phone} onChange={handleChange} error={errors.phone} autoComplete="tel" maxLength={15} />
                 <InputField label="Email Address" name="email" type="email" placeholder="john@example.com" value={formDataState.email} onChange={handleChange} error={errors.email} autoComplete="email" />
               </div>
             </div>
@@ -221,7 +238,7 @@ export default function CheckoutPage() {
                 <InputField label="Address Line 2 (Optional)" name="addressLine2" placeholder="Apartment, Suite, etc." className="md:col-span-2" value={formDataState.addressLine2} onChange={handleChange} error={errors.addressLine2} autoComplete="address-line2" />
                 <InputField label="City" name="city" placeholder="City" required value={formDataState.city} onChange={handleChange} error={errors.city} autoComplete="address-level2" />
                 <InputField label="State" name="state" placeholder="State" required value={formDataState.state} onChange={handleChange} error={errors.state} autoComplete="address-level1" />
-                <InputField label="Pincode" name="pincode" placeholder="Pincode" required value={formDataState.pincode} onChange={handleChange} error={errors.pincode} autoComplete="postal-code" />
+                <InputField label="Pincode" name="pincode" placeholder="Pincode" required value={formDataState.pincode} onChange={handleChange} error={errors.pincode} autoComplete="postal-code" maxLength={6} type="text" inputMode="numeric" />
                 <div className="flex flex-col gap-1">
                   <label className="text-xs uppercase tracking-widest text-secondary-text font-bold">Country <span className="text-error">*</span></label>
                   <input type="text" name="country" value="India" readOnly className="w-full bg-white/5 border border-border/30 rounded-xl px-4 py-3 text-secondary-text cursor-not-allowed opacity-70" />

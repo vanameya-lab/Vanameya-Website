@@ -12,7 +12,7 @@ export default function PDPWhyVanameya() {
     {
       title: "Small Batch Production",
       desc: "Crafted in limited quantities to ensure maximum freshness, flavor profile, and quality control.",
-      img: "/products/dry-ginger-coffee/Pack.png" // placeholder
+      img: "/products/dry-ginger-coffee/pack.png" // placeholder
     },
     {
       title: "Unrefined & Pure",

@@ -8,7 +8,7 @@ export default function PDPRelatedProducts() {
 
   const related = [
     { name: "Roasted Sesame Balls", price: "₹99", type: "Perfect Pairing", img: "/products/dry-ginger-coffee/herodesktopview.png" },
-    { name: "Kerala Banana Chips", price: "₹149", type: "Traditional Snack", img: "/products/dry-ginger-coffee/Pack.png" },
+    { name: "Kerala Banana Chips", price: "₹149", type: "Traditional Snack", img: "/products/dry-ginger-coffee/pack.png" },
     { name: "Spiced Jaggery Cubes", price: "₹199", type: "Sweet Addition", img: "/products/dry-ginger-coffee/sachet.png" }
   ];
 
@@ -23,7 +23,7 @@ export default function PDPRelatedProducts() {
             <div className="flex flex-wrap items-center gap-4 justify-center">
               {/* Product 1 */}
               <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl bg-white/10 border border-border/50 overflow-hidden relative">
-                <Image src="/products/dry-ginger-coffee/Pack.png" alt="Coffee" fill className="object-contain p-2" sizes="128px" />
+                <Image src="/products/dry-ginger-coffee/pack.png" alt="Coffee" fill className="object-contain p-2" sizes="128px" />
               </div>
               <span className="text-2xl text-accent font-bold">+</span>
               {/* Product 2 */}

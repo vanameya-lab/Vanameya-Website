@@ -22,7 +22,7 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
       date: "October 12, 2025",
       title: "Replaced my morning coffee completely",
       text: "I was skeptical at first, but the flavor is incredible. It has that perfect kick of ginger without being overwhelming. My digestion feels so much better, and I don't get the caffeine crash anymore.",
-      photos: ["/products/dry-ginger-coffee/Pack.png", "/products/dry-ginger-coffee/sachet.png"]
+      photos: ["/products/dry-ginger-coffee/pack.png", "/products/dry-ginger-coffee/sachet.png"]
     },
     {
       id: "hardcoded-2",
