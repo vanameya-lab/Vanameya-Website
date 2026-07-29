@@ -43,8 +43,10 @@ export function CartProvider({ children }) {
 
       if (existingItemIndex > -1) {
         const newCart = [...prev];
-        newCart[existingItemIndex].quantity += quantity;
-        newCart[existingItemIndex].price = calculateUnitPrice(type, newCart[existingItemIndex].quantity);
+        const updatedItem = { ...newCart[existingItemIndex] };
+        updatedItem.quantity += quantity;
+        updatedItem.price = calculateUnitPrice(type, updatedItem.quantity);
+        newCart[existingItemIndex] = updatedItem;
         return newCart;
       }
 
@@ -70,8 +72,10 @@ export function CartProvider({ children }) {
     if (newQuantity < 1) return;
     setCart((prev) => {
       const newCart = [...prev];
-      newCart[index].quantity = newQuantity;
-      newCart[index].price = calculateUnitPrice(newCart[index].type, newQuantity);
+      const updatedItem = { ...newCart[index] };
+      updatedItem.quantity = newQuantity;
+      updatedItem.price = calculateUnitPrice(updatedItem.type, newQuantity);
+      newCart[index] = updatedItem;
       return newCart;
     });
   };

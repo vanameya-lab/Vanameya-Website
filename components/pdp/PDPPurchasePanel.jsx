@@ -227,7 +227,7 @@ Please guide me through checkout.`;
           </div>
           <div className="flex flex-col min-w-0">
             <span className="text-xs sm:text-sm font-semibold text-primary-text truncate">Free Shipping</span>
-            <span className="text-[10px] sm:text-xs text-secondary-text/80 truncate">On orders over ₹500</span>
+            <span className="text-[10px] sm:text-xs text-secondary-text/80 truncate">On orders over ₹799</span>
           </div>
         </div>
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">

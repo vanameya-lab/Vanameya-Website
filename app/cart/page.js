@@ -9,11 +9,10 @@ import { motion } from "framer-motion";
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, cartSubtotal, isInitialized } = useCart();
   
-  const shippingThreshold = 500;
-  const shippingCharge = 50;
+  const shippingThreshold = 799;
   
   const requiresShipping = cartSubtotal < shippingThreshold && cartSubtotal > 0;
-  const shippingCost = requiresShipping ? shippingCharge : 0;
+  const shippingCost = 0; // Calculated at checkout based on state
   const total = cartSubtotal + shippingCost;
 
   if (!isInitialized) {
@@ -119,7 +118,7 @@ export default function CartPage() {
                   <div className="flex justify-between items-center text-secondary-text">
                     <span>Shipping</span>
                     <span className="text-primary-text font-medium">
-                      {requiresShipping ? `₹${shippingCharge}` : "Free"}
+                      {requiresShipping ? "Calculated at checkout" : "Free"}
                     </span>
                   </div>
                   {requiresShipping && (

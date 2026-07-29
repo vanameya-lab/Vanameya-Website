@@ -8,6 +8,7 @@ import { useActionState, useEffect, useState, startTransition } from "react";
 import Script from "next/script";
 import { processCheckout, verifyPayment } from "./actions";
 import { calculateShipping } from "@/utils/shippingCalculator";
+import { INDIAN_STATES } from "@/utils/shippingConfig";
 
 const InputField = ({ label, name, type = "text", placeholder, required, className = "", value, onChange, error, autoComplete, maxLength }) => (
   <div className={`flex flex-col gap-1 ${className}`}>
@@ -28,6 +29,26 @@ const InputField = ({ label, name, type = "text", placeholder, required, classNa
   </div>
 );
 
+const SelectField = ({ label, name, required, className = "", value, onChange, error, options }) => (
+  <div className={`flex flex-col gap-1 ${className}`}>
+    <label className="text-xs uppercase tracking-widest text-secondary-text font-bold">
+      {label} {required && <span className="text-error">*</span>}
+    </label>
+    <select
+      name={name}
+      value={value || ""}
+      onChange={onChange}
+      className={`w-full bg-white/5 border ${error ? 'border-error' : 'border-border/30'} rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:border-accent transition-colors appearance-none`}
+    >
+      <option value="" disabled className="bg-surface text-secondary-text">Select {label}</option>
+      {options.map((opt) => (
+        <option key={opt} value={opt} className="bg-surface text-primary-text">{opt}</option>
+      ))}
+    </select>
+    {error && <span className="text-xs text-error">{error}</span>}
+  </div>
+);
+
 export default function CheckoutPage() {
   const { cart, cartSubtotal, isInitialized, clearCart } = useCart();
   const router = useRouter();
@@ -42,7 +63,7 @@ export default function CheckoutPage() {
   const [isVerifying, setIsVerifying] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
 
-  const shippingThreshold = 999;
+  const shippingThreshold = 799;
   const requiresShipping = cartSubtotal < shippingThreshold && cartSubtotal > 0;
   
   // Calculate total boxes from cart
@@ -51,7 +72,8 @@ export default function CheckoutPage() {
   // Calculate dynamic shipping charge based on state and weight
   const shippingCharge = calculateShipping(formDataState.state, totalBoxes);
   
-  const shippingCost = requiresShipping ? shippingCharge : 0;
+  const isStateEntered = !!formDataState.state.trim();
+  const shippingCost = requiresShipping && isStateEntered ? shippingCharge : 0;
   const total = cartSubtotal + shippingCost;
 
   useEffect(() => {
@@ -237,7 +259,7 @@ export default function CheckoutPage() {
                 <InputField label="Address Line 1" name="addressLine1" placeholder="House/Flat No., Street" required className="md:col-span-2" value={formDataState.addressLine1} onChange={handleChange} error={errors.addressLine1} autoComplete="address-line1" />
                 <InputField label="Address Line 2 (Optional)" name="addressLine2" placeholder="Apartment, Suite, etc." className="md:col-span-2" value={formDataState.addressLine2} onChange={handleChange} error={errors.addressLine2} autoComplete="address-line2" />
                 <InputField label="City" name="city" placeholder="City" required value={formDataState.city} onChange={handleChange} error={errors.city} autoComplete="address-level2" />
-                <InputField label="State" name="state" placeholder="State" required value={formDataState.state} onChange={handleChange} error={errors.state} autoComplete="address-level1" />
+                <SelectField label="State" name="state" required value={formDataState.state} onChange={handleChange} error={errors.state} options={INDIAN_STATES} />
                 <InputField label="Pincode" name="pincode" placeholder="Pincode" required value={formDataState.pincode} onChange={handleChange} error={errors.pincode} autoComplete="postal-code" maxLength={6} type="text" inputMode="numeric" />
                 <div className="flex flex-col gap-1">
                   <label className="text-xs uppercase tracking-widest text-secondary-text font-bold">Country <span className="text-error">*</span></label>
@@ -291,7 +313,11 @@ export default function CheckoutPage() {
                 <div className="flex justify-between items-center text-secondary-text">
                   <span>Shipping</span>
                   <span className="text-primary-text font-medium">
-                    {requiresShipping ? `₹${shippingCharge}` : "Free"}
+                    {!requiresShipping 
+                      ? "Free" 
+                      : isStateEntered 
+                        ? `₹${shippingCharge}` 
+                        : "Calculated based on state"}
                   </span>
                 </div>
               </div>
