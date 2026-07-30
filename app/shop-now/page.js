@@ -43,11 +43,12 @@ export default function ShopNow() {
 
       {/* Storytelling & Info Sections Below Fold */}
       <PDPBenefits />
-      <PDPPreparationTimeline />
-      <PDPNutritionSpecs />
       
       {/* Reviews & Social Proof */}
       <PDPReviews />
+
+      <PDPPreparationTimeline />
+      <PDPNutritionSpecs />
       
       {/* Upsells */}
       {/* 

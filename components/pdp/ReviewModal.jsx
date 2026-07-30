@@ -8,6 +8,8 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
   const [hoverRating, setHoverRating] = useState(0);
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
+  const [reviewerName, setReviewerName] = useState("");
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -16,8 +18,8 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
   // For the sake of this implementation, we use placeholders or expect them to be passed/selected
   // Since we don't have the auth context here, we assume customer_id and order_id are known.
   // Ideally, the user selects an order they are reviewing, or we pass it down.
-  const CUSTOMER_ID = "00000000-0000-0000-0000-000000000000"; 
-  const ORDER_ID = "00000000-0000-0000-0000-000000000000";
+  const CUSTOMER_ID = null; 
+  const ORDER_ID = null;
 
 
 
@@ -27,10 +29,6 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
 
     if (rating === 0) {
       setError("Please select a rating.");
-      return;
-    }
-    if (!title.trim() || !review.trim()) {
-      setError("Title and review text are required.");
       return;
     }
 
@@ -43,7 +41,9 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         productId,
         rating,
         title,
-        review
+        review,
+        reviewerName,
+        consent
       });
 
       setSuccess(true);
@@ -127,9 +127,33 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
                   </div>
                 </div>
 
+                {/* Name */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="reviewerName" className="text-sm font-semibold text-primary-text">Your Name (Optional)</label>
+                  <input
+                    id="reviewerName"
+                    type="text"
+                    value={reviewerName}
+                    onChange={(e) => setReviewerName(e.target.value)}
+                    placeholder="John Doe"
+                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text placeholder-secondary-text/50 focus:outline-none focus:border-accent transition-colors"
+                  />
+                  {reviewerName.trim().length > 0 && (
+                    <label className="flex items-center gap-2 mt-1 cursor-pointer">
+                      <input 
+                        type="checkbox" 
+                        checked={consent}
+                        onChange={(e) => setConsent(e.target.checked)}
+                        className="w-4 h-4 rounded border-border/50 bg-white/5 text-accent focus:ring-accent focus:ring-offset-0"
+                      />
+                      <span className="text-xs text-secondary-text/80">I consent to showing my name on the website</span>
+                    </label>
+                  )}
+                </div>
+
                 {/* Title */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="title" className="text-sm font-semibold text-primary-text">Review Title *</label>
+                  <label htmlFor="title" className="text-sm font-semibold text-primary-text">Review Title (Optional)</label>
                   <input
                     id="title"
                     type="text"
@@ -142,7 +166,7 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
 
                 {/* Review Text */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="review" className="text-sm font-semibold text-primary-text">Your Review *</label>
+                  <label htmlFor="review" className="text-sm font-semibold text-primary-text">Your Review (Optional)</label>
                   <textarea
                     id="review"
                     value={review}

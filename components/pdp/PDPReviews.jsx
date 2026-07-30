@@ -22,7 +22,7 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
       date: "October 12, 2025",
       title: "Replaced my morning coffee completely",
       text: "I was skeptical at first, but the flavor is incredible. It has that perfect kick of ginger without being overwhelming. My digestion feels so much better, and I don't get the caffeine crash anymore.",
-      photos: ["/products/dry-ginger-coffee/pack.png", "/products/dry-ginger-coffee/sachet.png"]
+      photos: []
     },
     {
       id: "hardcoded-2",
@@ -42,7 +42,7 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
       date: "September 15, 2025",
       title: "Great for travel",
       text: "I take these everywhere now. It's so hard to find healthy, natural drinks when traveling. Only giving 4 stars because I wish the box had 15 sachets instead of 10!",
-      photos: ["/products/dry-ginger-coffee/herodesktopview.png"]
+      photos: []
     }
   ];
 
@@ -116,7 +116,7 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
   }
 
   return (
-    <section className="w-full py-24 px-6 bg-surface border-t border-border/50">
+    <section id="reviews" className="w-full py-24 px-6 bg-surface border-t border-border/50">
       <div className="max-w-container-max mx-auto">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
           
