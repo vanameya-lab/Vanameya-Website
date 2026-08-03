@@ -148,32 +148,32 @@ export default function Hero({ frames = [] }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-            className="absolute top-0 left-0 w-full flex flex-col text-left pointer-events-auto"
+            className="absolute top-auto bottom-32 md:top-0 md:bottom-auto left-0 w-full flex flex-col text-left pointer-events-auto"
           >
             <div ref={textRef} className="w-full max-w-lg flex flex-col gap-3 md:gap-4">
               <span className="type-label text-accent tracking-[0.2em] uppercase opacity-80 block drop-shadow-md">
                 A Morning Practice
               </span>
               
-              <h1 className="type-display-lg text-primary-text drop-shadow-xl">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold font-heading leading-[1.1] tracking-[-0.02em] text-primary-text drop-shadow-xl">
                 Awaken the senses.<br />
                 Rooted in heritage.
               </h1>
               
-              <p className="type-body-lg text-secondary-text mt-2 drop-shadow-md">
+              <p className="hidden md:block type-body-lg text-secondary-text mt-2 drop-shadow-md">
                 Experience the deep, grounding ritual of traditional Kerala Dry Ginger Coffee. A harmonious blend of ancient wisdom and modern luxury.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 w-full sm:w-auto justify-start items-start">
                 <Link 
                   href="/shop-now" 
-                  className="w-full sm:w-auto bg-accent text-surface-elevated type-label tracking-widest uppercase hover:bg-accent-hover transition-all duration-300 py-4 px-8 rounded flex items-center justify-center gap-2 font-semibold cursor-pointer shadow-lg"
+                  className="w-[60%] sm:w-auto bg-accent text-surface-elevated type-label text-[10px] sm:text-xs tracking-widest uppercase hover:bg-accent-hover transition-all duration-300 py-3 sm:py-4 px-4 sm:px-8 rounded-2xl flex items-center justify-center gap-2 font-semibold cursor-pointer shadow-lg text-center"
                 >
                   Shop Now
                 </Link>
                 <Link 
                   href="/story" 
-                  className="w-full sm:w-auto border border-border text-primary-text type-label tracking-widest uppercase hover:bg-white/10 transition-all duration-300 py-4 px-8 rounded flex items-center justify-center cursor-pointer backdrop-blur-sm"
+                  className="w-[60%] sm:w-auto border border-border text-primary-text type-label text-[9px] sm:text-xs tracking-widest uppercase hover:bg-white/10 transition-all duration-300 py-3 sm:py-4 px-4 sm:px-8 rounded-2xl flex items-center justify-center cursor-pointer backdrop-blur-sm text-center"
                 >
                   Discover the Story
                 </Link>

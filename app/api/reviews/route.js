@@ -1,25 +1,41 @@
 import { NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 
+const sanitizeInput = (str) => {
+  if (typeof str !== 'string') return str;
+  // Only allow letters, numbers, spaces, and basic punctuation to prevent injection
+  return str.replace(/[^a-zA-Z0-9\s.,!?'-]/g, '');
+};
+
 export async function POST(req) {
   try {
     const body = await req.json();
     const { customerId, orderId, productId, rating, title, review, images, reviewerName, consent } = body;
+
+    const cleanTitle = sanitizeInput(title);
+    const cleanReview = sanitizeInput(review);
 
     const supabaseAdmin = createAdminClient();
 
     let finalCustomerId = customerId;
 
     if (!finalCustomerId) {
-      const guestName = (consent && reviewerName && reviewerName.trim()) ? reviewerName.trim() : 'Anonymous';
+      let guestName = (consent && reviewerName && reviewerName.trim()) ? reviewerName.trim() : 'Anonymous';
+      guestName = sanitizeInput(guestName);
       const dummyEmail = `guest_${Date.now()}_${Math.random().toString(36).substring(7)}@vanameya.com`;
+      const dummyPhone = `GUEST${Date.now().toString().substring(5)}`;
       
       const { data: newGuest, error: guestError } = await supabaseAdmin
         .from('customers')
         .insert([{
           full_name: guestName,
           email: dummyEmail,
-          phone: '0000000000'
+          phone: dummyPhone,
+          address_line1: 'N/A',
+          city: 'N/A',
+          state: 'N/A',
+          pincode: '000000',
+          country: 'India'
         }])
         .select('id')
         .single();
@@ -32,16 +48,31 @@ export async function POST(req) {
       finalCustomerId = newGuest.id;
     }
 
+    let finalProductId = productId;
+    if (!finalProductId || finalProductId === '00000000-0000-0000-0000-000000000000') {
+      const { data: productData, error: productError } = await supabaseAdmin
+        .from('products')
+        .select('id')
+        .limit(1)
+        .single();
+        
+      if (productError || !productData) {
+        console.error("Error fetching fallback product:", productError);
+        return NextResponse.json({ success: false, error: "Failed to link review to product" }, { status: 500 });
+      }
+      finalProductId = productData.id;
+    }
+
     const { data, error } = await supabaseAdmin
       .from('reviews')
       .insert([
         {
           customer_id: finalCustomerId,
           order_id: orderId,
-          product_id: productId,
+          product_id: finalProductId,
           rating,
-          title,
-          review,
+          title: cleanTitle,
+          review: cleanReview,
           review_images: images || [],
           approved: false,
         }

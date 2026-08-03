@@ -5,7 +5,6 @@ import ProductFAQ from "@/components/ProductFAQ";
 // New Premium PDP Components
 import PDPGallery from "@/components/pdp/PDPGallery";
 import PDPPurchasePanel from "@/components/pdp/PDPPurchasePanel";
-import PDPStickyMobileBar from "@/components/pdp/PDPStickyMobileBar";
 import PDPBenefits from "@/components/pdp/PDPBenefits";
 import PDPPreparationTimeline from "@/components/pdp/PDPPreparationTimeline";
 import PDPNutritionSpecs from "@/components/pdp/PDPNutritionSpecs";
@@ -62,9 +61,6 @@ export default function ShopNow() {
 
       <Footer />
 
-      {/* Mobile Sticky Buy Bar */}
-      <PDPStickyMobileBar />
-      
     </main>
   );
 }
