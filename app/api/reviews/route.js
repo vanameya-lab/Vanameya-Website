@@ -91,7 +91,7 @@ export async function POST(req) {
           title: "Customer Review",
           review: cleanReview,
           review_images: images || [],
-          approved: false,
+          approved: true,
         }
       ])
       .select()

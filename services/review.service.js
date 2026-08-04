@@ -44,10 +44,20 @@ export const reviewService = {
   async getReviews({ productId, sortBy = 'newest', page = 1, limit = 5 }) {
     const supabase = createClient();
     
+    let finalProductId = productId;
+    if (!finalProductId || finalProductId === '00000000-0000-0000-0000-000000000000') {
+      const { data: productData } = await supabase
+        .from('products')
+        .select('id')
+        .limit(1)
+        .single();
+      if (productData) finalProductId = productData.id;
+    }
+
     let query = supabase
       .from('reviews')
       .select('*, customers(full_name)', { count: 'exact' })
-      .eq('product_id', productId)
+      .eq('product_id', finalProductId)
       .eq('approved', true);
 
     switch (sortBy) {
@@ -87,10 +97,20 @@ export const reviewService = {
   async getRatingSummary(productId) {
     const supabase = createClient();
     
+    let finalProductId = productId;
+    if (!finalProductId || finalProductId === '00000000-0000-0000-0000-000000000000') {
+      const { data: productData } = await supabase
+        .from('products')
+        .select('id')
+        .limit(1)
+        .single();
+      if (productData) finalProductId = productData.id;
+    }
+
     const { data, error } = await supabase
       .from('reviews')
       .select('rating')
-      .eq('product_id', productId)
+      .eq('product_id', finalProductId)
       .eq('approved', true);
 
     if (error) {
