@@ -59,10 +59,12 @@ export async function generateInvoicePDF(orderId) {
       const headerY = doc.y;
       
       // LOGO
+      let addressStartY = headerY + 20;
       try {
         const logoPath = path.join(process.cwd(), 'public', 'logo', 'teal.png');
         const logoBuffer = fs.readFileSync(logoPath);
-        doc.image(logoBuffer, 30, headerY, { width: 120 });
+        doc.image(logoBuffer, 30, headerY, { width: 90 });
+        addressStartY = headerY + 100;
       } catch (e) {
         console.error("PDF Logo Render Error:", e);
         // Fallback if logo not found
@@ -70,12 +72,12 @@ export async function generateInvoicePDF(orderId) {
       }
 
       doc.font('Helvetica').fontSize(9)
-         .text('MANNARKKAD P.O, PALAKKAD 678582,', 30, headerY + 45)
-         .text('Phone : 94 95 96 5955', 30, headerY + 57)
-         .text('Email : info@vanameya.com', 30, headerY + 69)
-         .text('GSTIN: 32DHOPA7605F1ZM', 30, headerY + 81)
-         .text('State:Kerala', 30, headerY + 93)
-         .text('fssai Lic.No.: 11326009000235', 30, headerY + 105);
+         .text('MANNARKKAD P.O, PALAKKAD 678582,', 30, addressStartY)
+         .text('Phone : 94 95 96 5955', 30, addressStartY + 12)
+         .text('Email : info@vanameya.com', 30, addressStartY + 24)
+         .text('GSTIN: 32DHOPA7605F1ZM', 30, addressStartY + 36)
+         .text('State:Kerala', 30, addressStartY + 48)
+         .text('fssai Lic.No.: 11326009000235', 30, addressStartY + 60);
 
       const maxCompanyY = doc.y;
 
