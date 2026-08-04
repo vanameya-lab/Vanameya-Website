@@ -9,7 +9,6 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
   const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [reviewerName, setReviewerName] = useState("");
-  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -43,7 +42,7 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         title,
         review,
         reviewerName,
-        consent
+        consent: reviewerName.trim().length > 0
       });
 
       setSuccess(true);
@@ -138,17 +137,6 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
                     placeholder="John Doe"
                     className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text placeholder-secondary-text/50 focus:outline-none focus:border-accent transition-colors"
                   />
-                  {reviewerName.trim().length > 0 && (
-                    <label className="flex items-center gap-2 mt-1 cursor-pointer">
-                      <input 
-                        type="checkbox" 
-                        checked={consent}
-                        onChange={(e) => setConsent(e.target.checked)}
-                        className="w-4 h-4 rounded border-border/50 bg-white/5 text-accent focus:ring-accent focus:ring-offset-0"
-                      />
-                      <span className="text-xs text-secondary-text/80">I consent to showing my name on the website</span>
-                    </label>
-                  )}
                 </div>
 
                 {/* Title */}

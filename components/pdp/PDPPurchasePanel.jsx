@@ -108,7 +108,7 @@ Please guide me through checkout.`;
             <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 4%</span>
           )}
           {quantity >= 5 && (
-            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 6% + Free Shipping</span>
+            <span className="px-2 py-1 bg-accent/20 border border-accent/30 rounded text-accent font-bold type-caption uppercase tracking-wider">Save 6%</span>
           )}
         </div>
         <span className="text-xs text-secondary-text/60 mt-1">Inclusive of all taxes. Ships in 24 hours.</span>

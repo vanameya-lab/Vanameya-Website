@@ -46,6 +46,18 @@ export default function PDPReviews({ productId = "00000000-0000-0000-0000-000000
     }
   ];
 
+  // Check URL for review parameter to auto-open modal
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('review') === 'true') {
+        setIsModalOpen(true);
+        // Clean up URL so it doesn't reopen on refresh
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     const fetchReviews = async () => {
       setLoading(true);
