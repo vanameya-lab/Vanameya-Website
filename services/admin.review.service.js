@@ -9,7 +9,7 @@ export const adminReviewService = {
     
     let query = supabase
       .from('reviews')
-      .select('*, customers(full_name), products(name)', { count: 'exact' })
+      .select('*, customers(full_name, phone), products(name)', { count: 'exact' })
       .order('created_at', { ascending: false });
 
     if (status === 'approved') {

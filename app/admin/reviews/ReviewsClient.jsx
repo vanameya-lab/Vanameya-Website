@@ -126,6 +126,11 @@ export default function ReviewsClient({ initialData }) {
                       <div className="font-semibold text-primary-text">
                         {review.customers?.full_name || 'Anonymous'}
                       </div>
+                      {review.customers?.phone && !review.customers.phone.startsWith('GUEST') && (
+                        <div className="text-[11px] font-medium text-accent mt-0.5">
+                          {review.customers.phone}
+                        </div>
+                      )}
                       <div className="text-xs text-secondary-text mt-1 truncate max-w-[200px]">
                         {review.products?.name || 'Unknown Product'}
                       </div>
