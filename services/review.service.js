@@ -4,7 +4,7 @@ export const reviewService = {
   /**
    * Submit a new review
    */
-  async createReview({ customerId, orderId, productId, rating, title, review, images = [] }) {
+  async createReview({ customerId, orderId, productId, rating, review, reviewerName, phone, consent, images = [] }) {
     const supabase = createClient();
     
 
@@ -20,8 +20,10 @@ export const reviewService = {
         orderId,
         productId,
         rating,
-        title,
         review,
+        reviewerName,
+        phone,
+        consent,
         images: [],
       }),
     });

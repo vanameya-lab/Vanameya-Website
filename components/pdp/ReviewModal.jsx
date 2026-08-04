@@ -2,13 +2,14 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { reviewService } from "@/services/review.service";
+import ConfettiEffect from "../ConfettiEffect";
 
 export default function ReviewModal({ isOpen, onClose, productId }) {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [title, setTitle] = useState("");
   const [review, setReview] = useState("");
   const [reviewerName, setReviewerName] = useState("");
+  const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -39,9 +40,9 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         orderId: ORDER_ID,
         productId,
         rating,
-        title,
         review,
         reviewerName,
+        phone,
         consent: reviewerName.trim().length > 0
       });
 
@@ -51,8 +52,8 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
         // Reset form
         setSuccess(false);
         setRating(0);
-        setTitle("");
         setReview("");
+        setPhone("");
       }, 3000);
 
     } catch (err) {
@@ -91,11 +92,11 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
           <div className="p-6 overflow-y-auto hide-scrollbar">
             {success ? (
               <div className="flex flex-col items-center justify-center py-12 text-center">
+                <ConfettiEffect />
                 <div className="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mb-4">
                   <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" /></svg>
                 </div>
-                <h4 className="text-xl font-semibold text-primary-text mb-2">Review Submitted!</h4>
-                <p className="text-secondary-text">Thank you for your feedback. Your review will be visible once approved.</p>
+                <h4 className="text-xl font-semibold text-primary-text mb-2">Thank You for Your Valuable Feedback!</h4>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col gap-6">
@@ -134,22 +135,23 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
                     type="text"
                     value={reviewerName}
                     onChange={(e) => setReviewerName(e.target.value)}
-                    placeholder="John Doe"
-                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text placeholder-secondary-text/50 focus:outline-none focus:border-accent transition-colors"
+                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:border-accent transition-colors"
                   />
                 </div>
 
-                {/* Title */}
+                {/* Phone */}
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="title" className="text-sm font-semibold text-primary-text">Review Title (Optional)</label>
+                  <label htmlFor="phone" className="text-sm font-semibold text-primary-text">Phone Number (Optional)</label>
                   <input
-                    id="title"
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                    placeholder="Sum up your experience"
-                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text placeholder-secondary-text/50 focus:outline-none focus:border-accent transition-colors"
+                    id="phone"
+                    type="tel"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:border-accent transition-colors"
                   />
+                  <span className="text-xs text-secondary-text/60 italic">
+                    Your number is kept completely private. We only use this for exclusive WhatsApp offers and updates.
+                  </span>
                 </div>
 
                 {/* Review Text */}
@@ -159,9 +161,8 @@ export default function ReviewModal({ isOpen, onClose, productId }) {
                     id="review"
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    placeholder="Tell us what you loved about it..."
                     rows={4}
-                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text placeholder-secondary-text/50 focus:outline-none focus:border-accent transition-colors resize-none"
+                    className="w-full bg-white/5 border border-border/50 rounded-xl px-4 py-3 text-primary-text focus:outline-none focus:border-accent transition-colors resize-none"
                   />
                 </div>
 
