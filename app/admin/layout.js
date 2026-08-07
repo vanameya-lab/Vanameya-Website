@@ -2,6 +2,7 @@ import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
 export const dynamic = 'force-dynamic';
 import LogoutButton from "./LogoutButton";
+import AdminMobileHeader from "./AdminMobileHeader";
 
 export default function AdminLayout({ children }) {
   const navItems = [
@@ -48,16 +49,7 @@ export default function AdminLayout({ children }) {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-full overflow-hidden print:overflow-visible print:h-auto">
-        {/* Mobile Header */}
-        <header className="md:hidden bg-surface border-b border-border/20 p-4 flex items-center justify-between shrink-0 print:hidden">
-          <Link href="/admin" className="text-lg font-heading font-semibold text-accent">
-            VANAMÉYA Admin
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link href="/" className="text-xs text-accent underline">Storefront</Link>
-            <LogoutButton />
-          </div>
-        </header>
+        <AdminMobileHeader />
         
         {/* Scrollable Content Area */}
         <div className="flex-1 overflow-y-auto p-4 md:p-8 hide-scrollbar print:overflow-visible print:p-0">

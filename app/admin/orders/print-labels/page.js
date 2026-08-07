@@ -69,13 +69,13 @@ export default async function PrintLabelsPage() {
             className="border-2 border-black rounded-lg p-6 flex flex-col justify-between break-inside-avoid print:h-[125mm]"
           >
             <div>
-              <div className="flex justify-between items-start border-b-2 border-black pb-4 mb-4">
+              <div className="flex flex-col sm:flex-row print:flex-row justify-between items-start sm:items-center print:items-start border-b-2 border-black pb-4 mb-4 gap-2 sm:gap-0">
                 <div>
                   <p className="font-bold text-lg">VANAMEYA EXPORTS AND IMPORTS</p>
                   <p className="text-sm">MANNARKKAD P.O, PALAKKAD 678582</p>
                   <p className="text-sm">Kerala, India | Ph: +91 94 95 96 5955</p>
                 </div>
-                <div className="text-right">
+                <div className="text-left sm:text-right print:text-right">
                   <p className="font-bold">ORDER #{order.order_number}</p>
                   <p className="text-xs">Date: {new Date(order.created_at).toLocaleDateString('en-IN')}</p>
                 </div>
@@ -93,12 +93,12 @@ export default async function PrintLabelsPage() {
               </div>
             </div>
             
-            <div className="mt-4 pt-4 border-t border-gray-300 flex justify-between items-end">
+            <div className="mt-4 pt-4 border-t border-gray-300 flex flex-col sm:flex-row print:flex-row justify-between items-start sm:items-end print:items-end gap-2 sm:gap-0">
               <div>
                 <p className="text-xs text-gray-600 font-bold uppercase tracking-wider">Contents:</p>
                 <p className="font-bold">{order.quantity}x {order.products?.name}</p>
               </div>
-              <p className="text-sm font-bold bg-black text-white px-3 py-1 rounded">PREPAID</p>
+              <p className="text-sm font-bold bg-black text-white px-3 py-1 rounded w-fit">PREPAID</p>
             </div>
           </div>
         ))}

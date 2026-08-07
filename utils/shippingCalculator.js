@@ -1,6 +1,6 @@
 /**
  * Shipping Calculator based on DTDC Quotation.
- * Base rates and additional weight bands (0.50kg) include 18% GST.
+ * Base rates and additional weight bands (0.50kg) currently exclude GST (commented out).
  */
 
 import { getZoneForState, RATES } from './shippingConfig';

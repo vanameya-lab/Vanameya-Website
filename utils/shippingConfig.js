@@ -38,11 +38,19 @@ export const INDIAN_STATES = [
 ];
 
 export const RATES = {
-  kerala: { base: 59, addl: 53.1 }, // 50 + 18% GST, 45 + 18% GST
-  south: { base: 82.6, addl: 76.7 }, // 70 + 18%, 65 + 18%
-  metroStates: { base: 100.3, addl: 88.5 }, // 85 + 18%, 75 + 18%
-  restOfIndia: { base: 153.4, addl: 118 }, // 130 + 18%, 100 + 18%
-  specialZone: { base: 188.8, addl: 177 } // 160 + 18%, 150 + 18%
+  // Rates with 18% GST included (commented out for now)
+  // kerala: { base: 59, addl: 53.1 }, // 50 + 18% GST, 45 + 18% GST
+  // south: { base: 82.6, addl: 76.7 }, // 70 + 18%, 65 + 18%
+  // metroStates: { base: 100.3, addl: 88.5 }, // 85 + 18%, 75 + 18%
+  // restOfIndia: { base: 153.4, addl: 118 }, // 130 + 18%, 100 + 18%
+  // specialZone: { base: 188.8, addl: 177 }, // 160 + 18%, 150 + 18%
+
+  // Base rates without GST
+  kerala: { base: 50, addl: 45 },
+  south: { base: 70, addl: 65 },
+  metroStates: { base: 85, addl: 75 },
+  restOfIndia: { base: 130, addl: 100 },
+  specialZone: { base: 160, addl: 150 }
 };
 
 export const ZONES = {
