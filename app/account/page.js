@@ -1,6 +1,10 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+export const metadata = {
+  robots: { index: false, follow: false }
+};
+
 export default function Account() {
   return (
     <main className="w-full min-h-screen flex flex-col items-center pt-24">

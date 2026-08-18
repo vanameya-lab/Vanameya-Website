@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { createAdminClient } from "@/lib/supabase/admin";
+export const metadata = {
+  robots: { index: false, follow: false }
+};
+
 export const dynamic = 'force-dynamic';
 import LogoutButton from "./LogoutButton";
 import AdminMobileHeader from "./AdminMobileHeader";

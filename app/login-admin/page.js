@@ -3,6 +3,7 @@ import { Suspense } from "react";
 export const metadata = {
   title: "Admin Portal",
   description: "Secure login for VANAMÉYA admin portal",
+  robots: { index: false, follow: false }
 };
 
 export default function AdminLoginPage() {

@@ -23,11 +23,16 @@ export default function Home() {
   }
 
   return (
-    <main id="main-scroll-container" className="w-full min-h-screen bg-background">
-      <Header />
-      <Hero frames={framePaths} />
-      <BrandStory />
-      <Footer />
-    </main>
+    <>
+      {framePaths.length > 0 && (
+        <link rel="preload" href={framePaths[0]} as="image" />
+      )}
+      <main id="main-scroll-container" className="w-full min-h-screen bg-background">
+        <Header />
+        <Hero frames={framePaths} />
+        <BrandStory />
+        <Footer />
+      </main>
+    </>
   );
 }
