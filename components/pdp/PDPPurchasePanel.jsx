@@ -53,7 +53,7 @@ Please guide me through checkout.`;
   };
 
   return (
-    <div id="purchase-panel" className="flex flex-col text-left lg:sticky lg:top-24 w-full h-full lg:max-h-[calc(100vh-120px)] lg:overflow-y-auto pb-24 hide-scrollbar">
+    <div id="purchase-panel" className="flex flex-col text-left w-full h-full pb-8 lg:pb-24">
       
       {/* Toast Notification */}
       <AnimatePresence>
@@ -205,19 +205,21 @@ Please guide me through checkout.`;
           disabled={loading}
           className="flex-1 h-14 bg-accent text-background type-label rounded-xl hover:bg-accent-hover disabled:opacity-75 transition-all duration-300 font-bold uppercase tracking-widest flex items-center justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5"
         >
-          {loading ? "Adding..." : "Add to Bag"}
+          {loading ? "Adding..." : "Shop Now"}
         </button>
       </div>
 
-      <a
-        href={getWhatsAppLink()}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full h-14 border-2 border-accent text-accent hover:bg-accent/10 rounded-xl transition-all duration-300 font-bold uppercase tracking-widest flex items-center justify-center gap-2 mb-8"
-      >
-        <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.371a9.936 9.936 0 004.779 1.218h.004c5.506 0 9.989-4.478 9.99-9.984a9.965 9.965 0 00-9.994-9.9868zm6.543 14.102c-.287.808-1.42 1.484-1.954 1.543-.473.053-.949.19-2.999-.619-2.624-1.037-4.305-3.693-4.437-3.867-.13-.176-1.066-1.416-1.066-2.701 0-1.285.672-1.916.912-2.18.24-.263.522-.329.696-.329.174 0 .348.001.5.01.162.008.38-.06.594.46.22.535.75 1.825.815 1.957.065.13.109.283.022.46-.087.175-.13.282-.26.435-.13.152-.271.34-.388.457-.13.13-.266.272-.114.533.152.26.678 1.116 1.455 1.808.999.89 1.839 1.166 2.099 1.296.26.13.413.109.565-.065.152-.175.652-.76.826-1.021.174-.26.348-.217.587-.13.24.087 1.522.717 1.782.847.26.13.435.195.5.304.065.109.065.63-.222 1.438z" /></svg>
-        Order via WhatsApp
-      </a>
+      <div className="flex justify-center mb-8">
+        <a
+          href={getWhatsAppLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-auto h-10 sm:h-12 px-6 sm:px-8 border border-accent/40 text-accent hover:bg-accent/10 rounded-lg transition-all duration-300 text-xs sm:text-sm font-semibold uppercase tracking-wider flex items-center justify-center gap-2 opacity-80 hover:opacity-100"
+        >
+          <svg className="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24"><path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.964 9.964 0 001.333 4.993L2 22l5.233-1.371a9.936 9.936 0 004.779 1.218h.004c5.506 0 9.989-4.478 9.99-9.984a9.965 9.965 0 00-9.994-9.9868zm6.543 14.102c-.287.808-1.42 1.484-1.954 1.543-.473.053-.949.19-2.999-.619-2.624-1.037-4.305-3.693-4.437-3.867-.13-.176-1.066-1.416-1.066-2.701 0-1.285.672-1.916.912-2.18.24-.263.522-.329.696-.329.174 0 .348.001.5.01.162.008.38-.06.594.46.22.535.75 1.825.815 1.957.065.13.109.283.022.46-.087.175-.13.282-.26.435-.13.152-.271.34-.388.457-.13.13-.266.272-.114.533.152.26.678 1.116 1.455 1.808.999.89 1.839 1.166 2.099 1.296.26.13.413.109.565-.065.152-.175.652-.76.826-1.021.174-.26.348-.217.587-.13.24.087 1.522.717 1.782.847.26.13.435.195.5.304.065.109.065.63-.222 1.438z" /></svg>
+          Order via WhatsApp
+        </a>
+      </div>
 
       {/* Trust Badges */}
       <div className="grid grid-cols-2 gap-2 sm:gap-4 pt-6 border-t border-border/50">

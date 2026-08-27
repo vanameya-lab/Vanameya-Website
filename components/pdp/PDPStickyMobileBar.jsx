@@ -79,7 +79,7 @@ export default function PDPStickyMobileBar() {
             disabled={loading}
             className="h-12 px-6 bg-accent text-background type-label rounded-xl hover:bg-accent-hover font-bold uppercase tracking-widest flex items-center justify-center shrink-0 shadow-lg"
           >
-            {loading ? "..." : "Buy Now"}
+            {loading ? "..." : "Shop Now"}
           </button>
         </motion.div>
       )}

@@ -93,8 +93,10 @@ export default function CartDrawer() {
                           <span className="w-6 text-center text-sm font-semibold text-primary-text">{item.quantity}</span>
                           <button 
                             onClick={() => updateQuantity(index, item.quantity + 1)}
-                            className="px-2 h-full flex items-center justify-center text-primary-text hover:bg-white/10 transition-colors"
-                          >+</button>
+                            className="px-3 h-full flex items-center justify-center text-accent bg-accent/10 hover:bg-accent/20 transition-all font-bold text-lg rounded-r-md relative"
+                          >
+                            <span className="animate-pulse drop-shadow-[0_0_5px_currentColor]">+</span>
+                          </button>
                         </div>
                         <span className="font-semibold text-primary-text">₹{item.price * item.quantity}</span>
                       </div>

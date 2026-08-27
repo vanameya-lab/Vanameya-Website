@@ -92,8 +92,10 @@ export default function CartPage() {
                       <span className="w-10 text-center text-base font-semibold">{item.quantity}</span>
                       <button 
                         onClick={() => updateQuantity(index, item.quantity + 1)}
-                        className="flex-1 h-full flex items-center justify-center text-primary-text hover:bg-white/10 transition-colors rounded-r-xl"
-                      >+</button>
+                        className="flex-1 h-full flex items-center justify-center text-accent bg-accent/10 hover:bg-accent/20 transition-all rounded-r-xl font-bold text-lg relative"
+                      >
+                        <span className="animate-pulse drop-shadow-[0_0_5px_currentColor]">+</span>
+                      </button>
                     </div>
                   </div>
                   
