@@ -1,6 +1,6 @@
 "use server";
 import { upsertCustomer } from "@/services/customer.service";
-import { createOrder, updateOrder } from "@/services/order.service";
+import { createOrder, updateOrder, getOrder, generateInvoiceNumber } from "@/services/order.service";
 import { createPayment } from "@/services/payment.service";
 import { createAdminClient } from "@/lib/supabase/admin";
 import Razorpay from "razorpay";
@@ -139,9 +139,18 @@ export async function verifyPayment(prevState, payload) {
       return { success: false, error: "Invalid payment signature." };
     }
 
+    // Get current order to check for existing invoice number
+    const { data: currentOrder } = await getOrder(order_id);
+    
+    let invoiceNumber = currentOrder?.invoice_number;
+    if (!invoiceNumber) {
+      invoiceNumber = await generateInvoiceNumber();
+    }
+
     // Signature verified, update the order status
     const { data: updatedOrder, error } = await updateOrder(order_id, {
-      payment_status: "paid"
+      payment_status: "paid",
+      invoice_number: invoiceNumber
     });
 
     if (error || !updatedOrder) {

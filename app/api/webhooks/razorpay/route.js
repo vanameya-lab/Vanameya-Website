@@ -53,9 +53,19 @@ export async function POST(req) {
         return NextResponse.json({ success: true, message: "Ignored, missing order_id" });
       }
 
+      // Get current order to check for existing invoice number
+      const { getOrder, generateInvoiceNumber } = await import('@/services/order.service');
+      const { data: currentOrder } = await getOrder(orderId);
+      
+      let invoiceNumber = currentOrder?.invoice_number;
+      if (!invoiceNumber) {
+        invoiceNumber = await generateInvoiceNumber();
+      }
+
       // Update Order status
       const { error: orderError } = await updateOrder(orderId, {
-        payment_status: "paid"
+        payment_status: "paid",
+        invoice_number: invoiceNumber
       });
       
       if (orderError) {

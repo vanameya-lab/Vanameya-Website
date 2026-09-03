@@ -17,12 +17,12 @@ export function calculateShipping(state, totalBoxes) {
   
   let totalCost = rateConfig.base;
 
-  if (totalWeightKg > 0.5) {
-    const additionalWeight = totalWeightKg - 0.5;
-    // Calculate how many 0.50kg bands are needed for the additional weight
-    const additionalBands = Math.ceil(additionalWeight / 0.5);
-    totalCost += (additionalBands * rateConfig.addl);
-  }
+  // if (totalWeightKg > 0.5) {
+  //   const additionalWeight = totalWeightKg - 0.5;
+  //   // Calculate how many 0.50kg bands are needed for the additional weight
+  //   const additionalBands = Math.ceil(additionalWeight / 0.5);
+  //   totalCost += (additionalBands * rateConfig.addl);
+  // }
 
   // Return rounded to nearest integer (Standard practice for shipping)
   return Math.round(totalCost);

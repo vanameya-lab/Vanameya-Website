@@ -40,6 +40,43 @@ async function generateOrderNumber() {
 }
 
 /**
+ * Generates the next invoice number (e.g., VMC/26-27/0001).
+ * 
+ * @returns {Promise<string>}
+ */
+export async function generateInvoiceNumber() {
+  const supabaseAdmin = createAdminClient()
+  
+  // Get the most recent invoice number
+  const { data, error } = await supabaseAdmin
+    .from('orders')
+    .select('invoice_number')
+    .not('invoice_number', 'is', null)
+    .order('invoice_number', { ascending: false })
+    .limit(1)
+    .maybeSingle()
+    
+  if (error) {
+    console.error('Error fetching last invoice number:', error)
+    throw new Error('Failed to generate invoice number')
+  }
+  
+  let nextNumber = 1
+  if (data && data.invoice_number) {
+    // Expected format: VMC/26-27/0001
+    const parts = data.invoice_number.split('/')
+    if (parts.length === 3) {
+      const currentNumber = parseInt(parts[2], 10)
+      if (!isNaN(currentNumber)) {
+        nextNumber = currentNumber + 1
+      }
+    }
+  }
+  
+  return `VMC/26-27/${String(nextNumber).padStart(4, '0')}`
+}
+
+/**
  * Creates a new order and logs the 'Order Created' event.
  * 
  * @param {Omit<OrderInsert, 'order_number'>} orderData - The data to create the order.

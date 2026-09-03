@@ -49,8 +49,8 @@ export const RATES = {
   kerala: { base: 50, addl: 45 },
   south: { base: 70, addl: 65 },
   metroStates: { base: 85, addl: 75 },
-  restOfIndia: { base: 130, addl: 100 },
-  specialZone: { base: 160, addl: 150 }
+  restOfIndia: { base: 99, addl: 100 },
+  specialZone: { base: 99, addl: 150 }
 };
 
 export const ZONES = {

@@ -134,9 +134,22 @@ export default function OrderDetailsClient({ order }) {
               <h2 className="text-xl font-heading font-semibold text-primary-text">Order #{currentOrder.order_number}</h2>
               <p className="text-sm text-secondary-text">{format(new Date(currentOrder.created_at), 'MMMM d, yyyy h:mm a')}</p>
             </div>
-            <span className={`px-3 py-1.5 text-xs rounded-full uppercase tracking-wider font-bold inline-block ${getStatusColor(currentOrder.status)}`}>
-              {currentOrder.status}
-            </span>
+            <div className="flex flex-col items-end gap-2">
+              <span className={`px-3 py-1.5 text-xs rounded-full uppercase tracking-wider font-bold inline-block ${getStatusColor(currentOrder.status)}`}>
+                {currentOrder.status}
+              </span>
+              {currentOrder.payment_status === 'paid' && currentOrder.invoice_number && (
+                <a 
+                  href={`/api/invoice/${currentOrder.id}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-xs font-bold text-accent hover:underline flex items-center gap-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                  Invoice
+                </a>
+              )}
+            </div>
           </div>
 
           <div className="border-t border-border/20 pt-6">

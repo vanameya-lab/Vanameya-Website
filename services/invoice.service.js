@@ -82,7 +82,7 @@ export async function generateInvoicePDF(orderId) {
       const maxCompanyY = doc.y;
 
       doc.text(`Date      : ${format(new Date(order.created_at), 'dd/MM/yyyy')}`, 350, headerY + 15);
-      doc.text(`Invoice No: VMC/${new Date(order.created_at).getFullYear()}/${order.order_number}`, 350, headerY + 30);
+      doc.text(`Invoice No: ${order.invoice_number || 'DRAFT'}`, 350, headerY + 30);
       doc.text(`Place of Supply: ${customer.state}`, 350, headerY + 45);
       
       doc.y = Math.max(maxCompanyY, headerY + 60);
